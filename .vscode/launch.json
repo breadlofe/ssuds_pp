@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "name": "Cmake build and launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceRoot}/bin/main",
+        "cwd": "${workspaceRoot}",
+        "preLaunchTask": "build"
+    }
+    ]
+}
