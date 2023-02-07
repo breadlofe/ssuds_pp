@@ -337,7 +337,12 @@ CMakeFiles/main.dir/main.cpp.o: /home/breadlofe/Desktop/Data_Structures/ssuds_pp
   /usr/local/include/gtest/gtest-test-part.h \
   /usr/local/include/gtest/gtest-typed-test.h \
   /usr/local/include/gtest/gtest_pred_impl.h \
-  /usr/local/include/gtest/gtest_prod.h
+  /usr/local/include/gtest/gtest_prod.h \
+  /usr/include/c++/11/fstream \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /home/breadlofe/Desktop/Data_Structures/ssuds_pp/include/arraylist.h
 
 CMakeFiles/main.dir/sampletest.cpp.o: /home/breadlofe/Desktop/Data_Structures/ssuds_pp/src/sampletest.cpp \
   /usr/include/stdc-predef.h \
@@ -678,6 +683,14 @@ CMakeFiles/main.dir/sampletest.cpp.o: /home/breadlofe/Desktop/Data_Structures/ss
   /usr/local/include/gtest/gtest_prod.h
 
 
+/home/breadlofe/Desktop/Data_Structures/ssuds_pp/include/arraylist.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
+
+/usr/include/c++/11/fstream:
+
 /usr/local/include/gtest/gtest_prod.h:
 
 /usr/local/include/gtest/gtest_pred_impl.h:
@@ -979,6 +992,8 @@ CMakeFiles/main.dir/sampletest.cpp.o: /home/breadlofe/Desktop/Data_Structures/ss
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
 
 /usr/include/asm-generic/posix_types.h:
 
