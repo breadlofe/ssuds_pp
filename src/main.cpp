@@ -4,7 +4,7 @@
 #include "arraylist.h"
 
 int main(int argc, char** argv) {
-    std::cout << "Hello, wold!\n";
+    std::cout << "Hello, world!\n";
 
 ::testing::InitGoogleTest(&argc, argv);
 return RUN_ALL_TESTS();
