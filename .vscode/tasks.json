@@ -1,9 +1,8 @@
 {
     "tasks": [
         {
-            "label": "build",
+            "label": "Build",
             "type": "shell",
-            "group": "build",
             "command": "cd Build/CMake && cmake -B./ -S../../src && make",
         }
     ],

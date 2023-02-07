@@ -7,7 +7,7 @@
         "request": "launch",
         "program": "${workspaceRoot}/bin/main",
         "cwd": "${workspaceRoot}",
-        "preLaunchTask": "build"
+        "preLaunchTask": "Build"
     }
     ]
 }
