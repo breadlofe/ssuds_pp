@@ -83,7 +83,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/breadlofe/Desktop/Data_Structures/ssuds_pp/build"
+			"value" : "/home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -1727,7 +1727,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/breadlofe/Desktop/Data_Structures/ssuds_pp/build"
+			"value" : "/home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build"
 		},
 		{
 			"name" : "ssuds_pp_IS_TOP_LEVEL",

@@ -5,7 +5,7 @@
 
 # Configuration directories and files
 SourceDirectory: /home/breadlofe/Desktop/Data_Structures/ssuds_pp
-BuildDirectory: /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build
+BuildDirectory: /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build
 
 # Where to place the cost data store
 CostDataFile: 

@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build
+CMAKE_BINARY_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build
 
 # Utility rule file for NightlyStart.
 
@@ -82,6 +82,6 @@ CMakeFiles/NightlyStart.dir/clean:
 .PHONY : CMakeFiles/NightlyStart.dir/clean
 
 CMakeFiles/NightlyStart.dir/depend:
-	cd /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build/CMakeFiles/NightlyStart.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build/CMakeFiles/NightlyStart.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/NightlyStart.dir/depend
 

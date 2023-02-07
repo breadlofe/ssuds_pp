@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build
+CMAKE_BINARY_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -117,9 +117,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build/CMakeFiles /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build/CMakeFiles /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

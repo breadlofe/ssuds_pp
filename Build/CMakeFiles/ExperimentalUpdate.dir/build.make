@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build
+CMAKE_BINARY_DIR = /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build
 
 # Utility rule file for ExperimentalUpdate.
 
@@ -82,6 +82,6 @@ CMakeFiles/ExperimentalUpdate.dir/clean:
 .PHONY : CMakeFiles/ExperimentalUpdate.dir/clean
 
 CMakeFiles/ExperimentalUpdate.dir/depend:
-	cd /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/build/CMakeFiles/ExperimentalUpdate.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build /home/breadlofe/Desktop/Data_Structures/ssuds_pp/Build/CMakeFiles/ExperimentalUpdate.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalUpdate.dir/depend
 
