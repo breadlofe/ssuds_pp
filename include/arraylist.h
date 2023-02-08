@@ -199,12 +199,12 @@ public:
     }
 
     ///Similar to remove function, but instead takes item and finds all instances of it, then uses remove method to remove them
-    void remove_all(const T possible_item)
+    void remove_all(const T possible_item, const unsigned int start_index = 0)
     {
         int index = 0;
         for(;;)
         {
-            index = find(possible_item);
+            index = find(possible_item, start_index);
             if(index==-1)
                 break;
             remove(index);
