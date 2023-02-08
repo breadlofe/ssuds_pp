@@ -13,6 +13,7 @@ protected:
     ssuds::ArrayList<float> test_f;
     ssuds::ArrayList<int> test_i;
     ssuds::ArrayList<std::string> test_s;
+    ssuds::ArrayList<std::string> test_sf;
 };
 
 TEST(Sample, SampleTest)
@@ -219,4 +220,55 @@ TEST_F(TestFixture, Insert4)
     // Already know that insert succesfully places item at index from Insert1 test.
     EXPECT_EQ(test_f[5], 11.3f);
     // Already know that bracket succesfully gets item at index from Bracket_OP1 test.
+}
+
+TEST_F(TestFixture, OStream1)
+{
+    test_s.append("Chris");
+    test_s.append("Logan");
+    testing::internal::CaptureStdout();
+    std::cout << test_s;
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "[Patrick, Chris, Logan]");
+}
+
+TEST_F(TestFixture, Clear1)
+{
+    test_f.clear();
+    EXPECT_EQ(test_f.size(), 0);
+}
+
+TEST_F(TestFixture, Clear2)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        test_i.append(rand()%10);
+    }
+    // Already know that capacity increases correctly from Capacity2 test.
+    test_i.clear();
+    EXPECT_EQ(test_i.get_capacity(), 5);
+}
+
+TEST_F(TestFixture, Find1)
+{
+    EXPECT_EQ(test_s.find("Patrick"), 0);
+}
+
+TEST_F(TestFixture, Find2)
+{
+    EXPECT_THROW(test_s.find("Patrick", 1), std::out_of_range);
+}
+
+TEST_F(TestFixture, Find3)
+{
+    EXPECT_EQ(test_s.find("patrick"), -1);
+}
+
+TEST_F(TestFixture, Find4)
+{
+    test_s.append("Logan");
+    test_s.append("Logan");
+    test_s.append("Chris");
+    test_s.append("Logan");
+    EXPECT_EQ(test_s.find("Logan", 3), 4);
 }
