@@ -1,5 +1,5 @@
 #include <gtest/gtest.h> 
-#include "arraylist.h"
+#include "../include/arraylist.h"
 
 TEST(ArrayList, SampleTest)
 {
