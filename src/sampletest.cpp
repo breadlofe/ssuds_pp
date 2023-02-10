@@ -1,5 +1,5 @@
 #include <gtest/gtest.h> 
-#include "../include/arraylist.h"
+#include "arraylist.h"
 
 class TestFixture : public::testing::Test
 {

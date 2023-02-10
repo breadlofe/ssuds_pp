@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <fstream>
-#include "../include/arraylist.h"
+#include "arraylist.h"
 
 int main(int argc, char** argv) {
     std::cout << "Hello, world!\n";
