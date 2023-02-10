@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/ssuds_pp.dir/main.cpp.o -o ssuds_pp 
