@@ -279,3 +279,22 @@ TEST_F(TestFixture, Iterator1)
     test_it_i = test_i.begin();
     EXPECT_EQ(*test_it_i, 1);
 }
+
+TEST_F(TestFixture, Iterator2)
+{
+    test_i.append(5);
+    test_it_i = test_i.begin();
+    ++test_it_i;
+    EXPECT_EQ(*test_it_i, 5);
+}
+
+TEST_F(TestFixture, IteratorEQ)
+{
+    test_i.append(6);
+    ssuds::ArrayList<int> test_i_copy;
+    test_i_copy = test_i;
+    test_it_i = test_i.begin();
+    ssuds::ArrayList<int>::Iterator test_it_i_copy;
+    test_it_i_copy = test_i_copy.begin();
+    EXPECT_TRUE(test_it_i == test_it_i_copy);
+}

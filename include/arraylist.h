@@ -56,28 +56,28 @@ public:
 
         bool operator==(const Iterator& other)
         {
-            if(mArray.size() != other.size())
-                return true;
-            for(int i =0; i < mArray.size(); i++)
+            if(mArray->size() != other.mArray->size())
+                return false;
+            for(int i =0; i < mArray->size(); i++)
             {
-                if((*mArray)[i] != (*other)[i])
-                    return true;
+                if((*mArray)[i] != (*other.mArray)[i])
+                    return false;
             }
-            if((*mArray)[mIndex] != (*other)[mIndex])
-                return true;
-            return false;
+            if((*mArray)[mIndex] != (*other.mArray)[mIndex])
+                return false;
+            return true;
         }
 
         bool operator!=(const Iterator& other)
         {
-            if(mArray.size() != other.size())
+            if(mArray->size() != other.mArray->size())
                 return true;
-            for(int i =0; i < mArray.size(); i++)
+            for(int i =0; i < mArray->size(); i++)
             {
-                if((*mArray)[i] != (*other)[i])
+                if((*mArray)[i] != (*other.mArray)[i])
                     return true;
             }
-            if((*mArray)[mIndex] != (*other)[mIndex])
+            if((*mArray)[mIndex] != (*other.mArray)[mIndex])
                 return true;
             return false;
         }
