@@ -63,7 +63,7 @@ public:
                 if((*mArray)[i] != (*other.mArray)[i])
                     return false;
             }
-            if((*mArray)[mIndex] != (*other.mArray)[mIndex])
+            if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
                 return false;
             return true;
         }
@@ -77,7 +77,7 @@ public:
                 if((*mArray)[i] != (*other.mArray)[i])
                     return true;
             }
-            if((*mArray)[mIndex] != (*other.mArray)[mIndex])
+            if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
                 return true;
             return false;
         }
