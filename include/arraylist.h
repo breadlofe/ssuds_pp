@@ -23,6 +23,67 @@ protected:
 
 public:
 
+    class Iterator
+    {
+    protected:
+
+        int mIndex;
+
+        ArrayList* mArray;
+
+    public:
+
+        Iterator()
+        {
+            // Default.
+        }
+
+        Iterator(int index, ArrayList* arrayList)
+        {
+            mIndex = index;
+            mArray = arrayList;
+        }
+
+        T& operator*()
+        {
+            return (*mArray)[mIndex];
+        }
+
+        Iterator operator++()
+        {
+            mIndex++;
+        }
+
+        bool operator==(const Iterator& other)
+        {
+            if(mArray.size() != other.size())
+                return true;
+            for(int i =0; i < mArray.size(); i++)
+            {
+                if((*mArray)[i] != (*other)[i])
+                    return true;
+            }
+            if((*mArray)[mIndex] != (*other)[mIndex])
+                return true;
+            return false;
+        }
+
+        bool operator!=(const Iterator& other)
+        {
+            if(mArray.size() != other.size())
+                return true;
+            for(int i =0; i < mArray.size(); i++)
+            {
+                if((*mArray)[i] != (*other)[i])
+                    return true;
+            }
+            if((*mArray)[mIndex] != (*other)[mIndex])
+                return true;
+            return false;
+        }
+
+    };
+
     ///Constructor for the array. Sets mData to nullptr and mSize to 0
     ArrayList()
     {
@@ -215,6 +276,19 @@ public:
     unsigned int get_capacity()
     {
         return mCapacity;
+    }
+
+    Iterator begin()
+    {
+		if (mSize == 0)
+			return Iterator(-1, nullptr);
+		else
+			return Iterator(0, this);
+    }
+
+    Iterator end()
+    {
+        return Iterator(-1, nullptr);
     }
 };
 

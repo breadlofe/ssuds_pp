@@ -14,6 +14,7 @@ protected:
     ssuds::ArrayList<int> test_i;
     ssuds::ArrayList<std::string> test_s;
     ssuds::ArrayList<std::string> test_sf;
+    ssuds::ArrayList<int>::Iterator test_it_i;
 };
 
 TEST(Sample, SampleTest)
@@ -271,4 +272,10 @@ TEST_F(TestFixture, Find4)
     test_s.append("Chris");
     test_s.append("Logan");
     EXPECT_EQ(test_s.find("Logan", 3), 4);
+}
+
+TEST_F(TestFixture, Iterator1)
+{
+    test_it_i = test_i.begin();
+    EXPECT_EQ(*test_it_i, 1);
 }
