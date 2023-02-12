@@ -334,3 +334,50 @@ TEST_F(TestFixture, IteratorEQ4)
     ++test_it_i_copy;
     EXPECT_FALSE(test_it_i == test_it_i_copy);
 }
+
+TEST_F(TestFixture, IteratorNEQ)
+{
+    test_i.append(6);
+    ssuds::ArrayList<int> test_i_copy;
+    test_i_copy = test_i;
+    test_it_i = test_i.begin();
+    ssuds::ArrayList<int>::Iterator test_it_i_copy;
+    test_it_i_copy = test_i_copy.begin();
+    EXPECT_FALSE(test_it_i != test_it_i_copy);
+}
+
+TEST_F(TestFixture, IteratorNEQ2)
+{
+    test_i.append(6);
+    ssuds::ArrayList<int> test_i_copy;
+    test_i_copy.append(1);
+    test_it_i = test_i.begin();
+    ssuds::ArrayList<int>::Iterator test_it_i_copy;
+    test_it_i_copy = test_i_copy.begin();
+    EXPECT_TRUE(test_it_i != test_it_i_copy);
+}
+
+TEST_F(TestFixture, IteratorNEQ3)
+{
+    test_i.append(6);
+    ssuds::ArrayList<int> test_i_copy;
+    test_i_copy.append(1);
+    test_i_copy.append(5);
+    test_it_i = test_i.begin();
+    ssuds::ArrayList<int>::Iterator test_it_i_copy;
+    test_it_i_copy = test_i_copy.begin();
+    EXPECT_TRUE(test_it_i != test_it_i_copy);
+}
+
+TEST_F(TestFixture, IteratorNEQ4)
+{
+    test_i.append(6);
+    ssuds::ArrayList<int> test_i_copy;
+    test_i_copy.append(1);
+    test_i_copy.append(6);
+    test_it_i = test_i.begin();
+    ssuds::ArrayList<int>::Iterator test_it_i_copy;
+    test_it_i_copy = test_i_copy.begin();
+    ++test_it_i_copy;
+    EXPECT_TRUE(test_it_i != test_it_i_copy);
+}
