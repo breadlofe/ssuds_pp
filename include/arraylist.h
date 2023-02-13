@@ -23,32 +23,39 @@ protected:
 
 public:
 
+    ///Iterator class for ArrayList. 
     class Iterator
     {
     protected:
 
+        ///Tracks index pointer is at in iterator. Type int.
         int mIndex;
 
+        ///Array list pointer that holds ArrayList.
         ArrayList* mArray;
 
     public:
 
+        ///Default constructor.
         Iterator()
         {
             // Default.
         }
 
+        ///Constructor for iterator that sets desired ArrayList and starting index.
         Iterator(int index, ArrayList* arrayList)
         {
             mIndex = index;
             mArray = arrayList;
         }
 
+        ///Allows * operator to return value of what iterator is currently pointing to.
         T& operator*()
         {
             return (*mArray)[mIndex];
         }
 
+        ///Moves iterator one forward in list. If at end, will set index to -1.
         void operator++()
         {
             if(mIndex >= mArray->size() - 1)
@@ -60,6 +67,7 @@ public:
                 mIndex++;
         }
 
+        ///Comparison operator to see if two iterators hold same values and are pointing to same location.
         bool operator==(const Iterator& other)
         {
             if(mIndex == -1 && other.mIndex == -1)
@@ -80,6 +88,7 @@ public:
             }
         }
 
+        ///Inverse of comparison operator above. 
         bool operator!=(const Iterator& other)
         {
             if(mIndex == -1 && other.mIndex == -1)
@@ -116,6 +125,7 @@ public:
         delete[] mData;
     }
 
+    ///Initializer list constructor. Allows whole lists to be put in as one ArrayList.
     ArrayList(const std::initializer_list<T>& ilist)
     {
         mSize = ilist.size();
@@ -310,6 +320,7 @@ public:
         return mCapacity;
     }
 
+    ///Returns iterator, if data is there, to beggining of ArrayList.
     Iterator begin()
     {
 		if (mSize == 0)
@@ -318,6 +329,7 @@ public:
 			return Iterator(0, this);
     }
 
+    ///Return iterator of one after end of ArrayList.
     Iterator end()
     {
         return Iterator(-1, nullptr);
