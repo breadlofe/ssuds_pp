@@ -288,6 +288,31 @@ TEST_F(TestFixture, Iterator2)
     EXPECT_EQ(*test_it_i, 5);
 }
 
+TEST_F(TestFixture, Iterator3)
+{
+    int ran = 0;
+    while(test_it_i != test_i.end())
+    {
+        ++test_it_i;
+        ran++;
+    }
+    EXPECT_EQ(ran, 1);
+}
+
+TEST_F(TestFixture, Iterator4)
+{
+    int ran = 0;
+    test_i.append(4);
+    test_i.append(6);
+    test_it_i = test_i.begin();
+    while(test_it_i != test_i.end())
+    {
+        ++test_it_i;
+        ran++;
+    }
+    EXPECT_EQ(ran, 3);
+}
+
 TEST_F(TestFixture, IteratorEQ)
 {
     test_i.append(6);

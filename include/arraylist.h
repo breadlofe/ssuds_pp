@@ -49,9 +49,15 @@ public:
             return (*mArray)[mIndex];
         }
 
-        Iterator operator++()
+        void operator++()
         {
-            mIndex++;
+            if(mIndex >= mArray->size() - 1)
+            {
+                mIndex = -1;
+                mArray = nullptr;
+            }
+            else
+                mIndex++;
         }
 
         bool operator==(const Iterator& other)
@@ -70,6 +76,11 @@ public:
 
         bool operator!=(const Iterator& other)
         {
+            if(mIndex == -1 && other.mIndex == -1)
+                return false;
+            else if(mIndex != -1 && other.mIndex == -1)
+                return true;
+            else{
             if(mArray->size() != other.mArray->size())
                 return true;
             for(int i =0; i < mArray->size(); i++)
@@ -80,6 +91,7 @@ public:
             if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
                 return true;
             return false;
+            }
         }
 
     };
@@ -152,7 +164,7 @@ public:
     }
 
     ///Getter for array. Returns item at given index (type uint)
-    T get(const unsigned int index)
+    T get(const int index)
     {
       if(index>(mSize-1) || index<0)
       {
@@ -165,7 +177,7 @@ public:
     }
 
     ///Same as get method, but will now be able to use bracket operator in main to get item.
-    T& operator[](const unsigned int index)
+    T& operator[](const int index)
     {
       if(index>(mSize-1) || index<0)
         throw std::out_of_range("Index out of range.");
