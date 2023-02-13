@@ -62,16 +62,22 @@ public:
 
         bool operator==(const Iterator& other)
         {
-            if(mArray->size() != other.mArray->size())
+            if(mIndex == -1 && other.mIndex == -1)
+                return true;
+            else if(mIndex != -1 && other.mIndex == -1)
                 return false;
-            for(int i =0; i < mArray->size(); i++)
-            {
-                if((*mArray)[i] != (*other.mArray)[i])
+            else{
+                if(mArray->size() != other.mArray->size())
                     return false;
+                for(int i =0; i < mArray->size(); i++)
+                {
+                    if((*mArray)[i] != (*other.mArray)[i])
+                        return false;
+                }
+                if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
+                    return false;
+                return true;
             }
-            if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
-                return false;
-            return true;
         }
 
         bool operator!=(const Iterator& other)
@@ -81,16 +87,16 @@ public:
             else if(mIndex != -1 && other.mIndex == -1)
                 return true;
             else{
-            if(mArray->size() != other.mArray->size())
-                return true;
-            for(int i =0; i < mArray->size(); i++)
-            {
-                if((*mArray)[i] != (*other.mArray)[i])
+                if(mArray->size() != other.mArray->size())
                     return true;
-            }
-            if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
-                return true;
-            return false;
+                for(int i =0; i < mArray->size(); i++)
+                {
+                    if((*mArray)[i] != (*other.mArray)[i])
+                        return true;
+                }
+                if((*mArray)[mIndex] != (*other.mArray)[other.mIndex])
+                    return true;
+                return false;
             }
         }
 
@@ -108,6 +114,20 @@ public:
     ~ArrayList()
     {
         delete[] mData;
+    }
+
+    ArrayList(const std::initializer_list<T>& ilist)
+    {
+        mSize = ilist.size();
+        while(ilist.size() > mCapacity)
+        {
+            mCapacity *= 2;
+        }
+        mData = new T[mCapacity];
+        for(int i = 0; i < ilist.size(); i++)
+        {
+            mData[i] = *(ilist.begin()+i);
+        }
     }
 
     ///Append function for array. Adds given new_item to end of array. Array dynamically resizes

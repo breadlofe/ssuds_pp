@@ -406,3 +406,9 @@ TEST_F(TestFixture, IteratorNEQ4)
     ++test_it_i_copy;
     EXPECT_TRUE(test_it_i != test_it_i_copy);
 }
+
+TEST_F(TestFixture, InitializerList1)
+{
+    ssuds::ArrayList<int> int_list = {1,4,5,7};
+    EXPECT_EQ(int_list[3], 7);
+}
