@@ -6,7 +6,6 @@
 int main(int argc, char** argv) {
     std::cout << "Hello, tests!\n";
 
-    // ssuds::ArrayList<int> int_list;
     // int_list.append(1);
     // int_list.append(2);
     // int_list.append(3);
