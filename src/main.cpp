@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "arraylist.h"
+#include "arraylist_utility.h"
 
 int main(int argc, char** argv) {
     std::cout << "Hello, tests!\n";

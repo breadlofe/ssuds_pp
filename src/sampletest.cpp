@@ -1,5 +1,6 @@
 #include <gtest/gtest.h> 
 #include "arraylist.h"
+#include "arraylist_utility.h"
 
 class TestFixture : public::testing::Test
 {
@@ -411,4 +412,35 @@ TEST_F(TestFixture, InitializerList1)
 {
     ssuds::ArrayList<int> int_list = {1,4,5,7};
     EXPECT_EQ(int_list[3], 7);
+}
+
+TEST_F(TestFixture, InitializerList2)
+{
+    ssuds::ArrayList<int> int_list = {1,4,5,7};
+    ssuds::ArrayList<int> list_copy;
+    list_copy = int_list;
+    EXPECT_EQ(list_copy[3], 7);
+}
+
+TEST_F(TestFixture, Shuffle1)
+{
+    ssuds::ArrayList<int> int_list = {1,7,9,11,12,15};
+    ssuds::ArrayList<int> list_copy; 
+    list_copy = int_list;
+    ssuds::shuffle(int_list);
+    unsigned int different = 0;
+
+    for(int i = 0; i < int_list.size(); i++)
+    {
+        if(int_list[i] != list_copy[i])
+            different++;
+    }
+    
+    EXPECT_GT(different, 0);
+}
+
+TEST_F(TestFixture, BubbleSort1)
+{
+    ssuds::ArrayList<int> int_list = {1, 2, 5, 3};
+    EXPECT_EQ(ssuds::bubble_sort<int>(int_list, ssuds::sort_type::ASCENDING), 1);
 }
