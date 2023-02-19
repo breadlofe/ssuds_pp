@@ -442,5 +442,18 @@ TEST_F(TestFixture, Shuffle1)
 TEST_F(TestFixture, BubbleSort1)
 {
     ssuds::ArrayList<int> int_list = {1, 2, 5, 3};
-    EXPECT_EQ(ssuds::bubble_sort<int>(int_list, ssuds::sort_type::ASCENDING), 1);
+    ssuds::bubble_sort(int_list, ssuds::sort_type::ASCENDING);
+    EXPECT_EQ(int_list[3], 5);
+}
+
+TEST_F(TestFixture, BubbleSort2)
+{
+    ssuds::ArrayList<int> int_list = {1, 2, 5, 3};
+    EXPECT_EQ(ssuds::bubble_sort(int_list, ssuds::sort_type::ASCENDING), 1);
+}
+
+TEST_F(TestFixture, BubbleSort3)
+{
+    ssuds::ArrayList<int> int_list = {1, 2, 5, 3};
+    EXPECT_EQ(ssuds::bubble_sort(int_list, ssuds::sort_type::DESCENDING), 5);
 }

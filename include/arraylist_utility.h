@@ -39,7 +39,7 @@ namespace ssuds{
         for(int i = 0; i < (n-1); i++)
         {
             bool is_sorted = true;
-            for(int j = 0; j < (n-1-i); i++)
+            for(int j = 0; j < (n-1-i); j++)
             {
                 if(out_of_order(alist[j], alist[j+1], stype))
                 {
