@@ -89,28 +89,28 @@ namespace ssuds{
     }
 
     template <class T>
-    int merge_sort(ArrayList<T>& alist, sort_type stype)
+    long int merge_sort(ArrayList<T>& alist, sort_type stype)
     {
-        int operations = merge_sort_recursive(alist, 0, alist.size()-1, stype);
+        long int operations = merge_sort_recursive(alist, 0, alist.size()-1, stype);
         return operations;
     }
 
     template <class T>
-    int merge_sort_recursive(ArrayList<T>& alist, int left, int right, sort_type stype)
+    long int merge_sort_recursive(ArrayList<T>& alist, int left, int right, sort_type stype)
     {
         if(left >= right)
             return 0;
         int middle = (int)((right - left)/2 + left);
-        int a = merge_sort_recursive(alist, left, middle, stype);
-        int b = merge_sort_recursive(alist, middle + 1, right, stype);
-        int c = merge(alist, left, middle, right, stype);
+        long int a = merge_sort_recursive(alist, left, middle, stype);
+        long int b = merge_sort_recursive(alist, middle + 1, right, stype);
+        long int c = merge(alist, left, middle, right, stype);
         return (a + b + c);
     }
 
     template <class T>
-    int merge(ArrayList<T>& alist, int left, int middle, int right, sort_type stype)
+    long int merge(ArrayList<T>& alist, int left, int middle, int right, sort_type stype)
     {
-        int operations = 0;
+        long int operations = 0;
         int n1 = middle - left + 1;
         int n2 = right - middle;
         ssuds::ArrayList<T> list1;
