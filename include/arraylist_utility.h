@@ -56,4 +56,36 @@ namespace ssuds{
         return num_swaps;
     }
 
+    template <class T>
+    int binary_search(ArrayList<T>& sorted_list, T value, sort_type stype, long int* comp=nullptr)
+    {
+        int left_side = 0;
+        int right_side = sorted_list.size() - 1;
+        long int counter = 0;
+        while(left_side <= right_side) //as in position, not value
+        {
+            int middle = (int)((right_side - left_side)/2 + left_side);
+            if(sorted_list[middle] == value)
+            {
+                counter++;
+                if(comp != nullptr)
+                    *comp = counter;
+                return middle;
+            }
+            else if(out_of_order(sorted_list[middle], value, stype)) //this is value, so should change.
+            {
+                counter++;
+                right_side = middle - 1;
+            }
+            else
+            {
+                counter++;
+                left_side = middle + 1;
+            }
+        }
+        if(comp != nullptr)
+            *comp = counter;
+        return -1;
+    }
+
 }

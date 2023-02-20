@@ -457,3 +457,31 @@ TEST_F(TestFixture, BubbleSort3)
     ssuds::ArrayList<int> int_list = {1, 2, 5, 3};
     EXPECT_EQ(ssuds::bubble_sort(int_list, ssuds::sort_type::DESCENDING), 5);
 }
+
+TEST_F(TestFixture, BinarySearch1)
+{
+    ssuds::ArrayList<int> int_list = {1, 2, 3, 5, 7, 9};
+    EXPECT_EQ(ssuds::binary_search(int_list, 7, ssuds::sort_type::ASCENDING), 4);
+}
+
+TEST_F(TestFixture, BinarySearch2)
+{
+    ssuds::ArrayList<int> int_list = {1, 2, 3, 5, 7, 9};
+    long int comparison_cntr[] = {0};
+    ssuds::binary_search(int_list, 7, ssuds::sort_type::ASCENDING, comparison_cntr);
+    EXPECT_EQ(*comparison_cntr, 2);
+}
+
+TEST_F(TestFixture, BinarySearch3)
+{
+    ssuds::ArrayList<int> int_list = {9, 7, 5, 3, 2, 1};
+    EXPECT_EQ(ssuds::binary_search(int_list, 7, ssuds::sort_type::DESCENDING), 1);
+}
+
+TEST_F(TestFixture, BinarySearch4)
+{
+    ssuds::ArrayList<int> int_list = {9, 7, 5, 3, 2, 1};
+    long int comparison_cntr[] = {0};
+    ssuds::binary_search(int_list, 7, ssuds::sort_type::DESCENDING, comparison_cntr);
+    EXPECT_EQ(*comparison_cntr, 3);
+}
