@@ -505,3 +505,29 @@ TEST_F(TestFixture, BinarySearch4)
     ssuds::binary_search(int_list, 7, ssuds::sort_type::DESCENDING, comparison_cntr);
     EXPECT_EQ(*comparison_cntr, 3);
 }
+
+TEST_F(TestFixture, MergeSort1)
+{
+    ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
+    ssuds::merge_sort(int_list, ssuds::sort_type::ASCENDING);
+    EXPECT_EQ(int_list[0], 1);
+}
+
+TEST_F(TestFixture, MergeSort2)
+{
+    ssuds::ArrayList<int> int_list = {8, 1, 5, 3};
+    EXPECT_EQ(ssuds::merge_sort(int_list, ssuds::sort_type::ASCENDING), 8);
+}
+
+TEST_F(TestFixture, MergeSort3)
+{
+    ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
+    ssuds::merge_sort(int_list, ssuds::sort_type::DESCENDING);
+    EXPECT_EQ(int_list[0], 10);
+}
+
+TEST_F(TestFixture, MergeSort4)
+{
+    ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
+    EXPECT_EQ(ssuds::merge_sort(int_list, ssuds::sort_type::DESCENDING), 24);
+}

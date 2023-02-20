@@ -89,26 +89,67 @@ namespace ssuds{
     }
 
     template <class T>
-    void merge_sort(ArrayList<T>& alist)
+    int merge_sort(ArrayList<T>& alist, sort_type stype)
     {
-        merge_sort_recursive(alist, 0, alist.size()-1);
+        int operations = merge_sort_recursive(alist, 0, alist.size()-1, stype);
+        return operations;
     }
 
     template <class T>
-    void merge_sort_recursive(ArrayList<T>& alist, int left, int right)
+    int merge_sort_recursive(ArrayList<T>& alist, int left, int right, sort_type stype)
     {
         if(left >= right)
-            return;
+            return 0;
         int middle = (int)((right - left)/2 + left);
-        merge_sort_recursive(alist, left, middle);
-        merge_sort_recursive(alist, middle + 1, right);
-        merge(alist, left, middle, right);
+        int a = merge_sort_recursive(alist, left, middle, stype);
+        int b = merge_sort_recursive(alist, middle + 1, right, stype);
+        int c = merge(alist, left, middle, right, stype);
+        return (a + b + c);
     }
 
     template <class T>
-    void merge(ArrayList<T>& alist, int left, int middle, int right)
+    int merge(ArrayList<T>& alist, int left, int middle, int right, sort_type stype)
     {
-        return;
+        int operations = 0;
+        int n1 = middle - left + 1;
+        int n2 = right - middle;
+        ssuds::ArrayList<T> list1;
+        ssuds::ArrayList<T> list2;
+        for(int i = left; i <= middle; i++)
+        {
+            list1.append(alist[i]);
+        }
+        for(int j = (middle + 1); j <= right; j++)
+        {
+            list2.append(alist[j]);
+        }
+        int index1 = 0;
+        int index2 = 0;
+        int index_main = left;
+        while(index1 < n1 && index2 < n2)
+        {
+            if(out_of_order(list2[index2], list1[index1], stype))
+            {
+                alist[index_main++] = list1[index1++];
+                operations++;
+            }
+            else
+            {
+                alist[index_main++] = list2[index2++];
+                operations++;
+            }
+        }
+        while(index1 < n1)
+        {
+            alist[index_main++] = list1[index1++];
+            operations++;
+        }
+        while(index2 < n2)
+        {
+            alist[index_main++] = list2[index2++];
+            operations++;
+        }
+        return operations;
     }
 
 }
