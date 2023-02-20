@@ -170,6 +170,18 @@ TEST_F(TestFixture, Copy3)
     EXPECT_NE(test_i.get_capacity(), test_copy.get_capacity());
 }
 
+TEST_F(TestFixture, CopyConstructor1)
+{
+    ssuds::ArrayList<float> test_copy = test_f;
+    EXPECT_EQ(test_copy[0], 0.1f);
+}
+
+TEST_F(TestFixture, CopyConstructor2)
+{
+    ssuds::ArrayList<int> new_list = {1,5,7,9};
+    EXPECT_EQ(new_list[3], 9);
+}
+
 TEST_F(TestFixture, Bracket_OP1)
 {
     EXPECT_EQ(test_s[0], test_s.get(0));

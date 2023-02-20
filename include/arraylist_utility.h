@@ -99,7 +99,7 @@ namespace ssuds{
     {
         if(left >= right)
             return;
-        int middle = (int)((right_side - left_side)/2 + left_side);
+        int middle = (int)((right - left)/2 + left);
         merge_sort_recursive(alist, left, middle);
         merge_sort_recursive(alist, middle + 1, right);
         merge(alist, left, middle, right);

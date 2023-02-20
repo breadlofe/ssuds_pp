@@ -49,6 +49,7 @@ public:
             mArray = arrayList;
         }
 
+
         ///Allows * operator to return value of what iterator is currently pointing to.
         T& operator*()
         {
@@ -126,20 +127,20 @@ public:
     }
 
     ///Copy constructor.
-    // ArrayList(const std::ArrayList<T>& alist)
-    // {
-    //     mCapacity = mMin_Capacity;
-    //     mSize = alist.size()
-    //     while(alist.size() > mCapacity)
-    //     {
-    //         mCapacity *= 2;
-    //     }
-    //     mData = new T[mCapacity];
-    //     for(int i = 0; i < alist.size(); i++)
-    //     {
-    //         mData[i] = alist[i];
-    //     }
-    // }
+    ArrayList(ArrayList<T>& alist)
+    {
+        mCapacity = mMin_Capacity;
+        mSize = alist.size();
+        while(alist.size() > mCapacity)
+        {
+            mCapacity *= 2;
+        }
+        mData = new T[mCapacity];
+        for(int i = 0; i < alist.size(); i++)
+        {
+            mData[i] = alist[i];
+        }
+    }
 
     ///Initializer list constructor. Allows whole lists to be put in as one ArrayList.
     ArrayList(const std::initializer_list<T>& ilist)
