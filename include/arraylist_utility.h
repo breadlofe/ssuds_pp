@@ -88,4 +88,27 @@ namespace ssuds{
         return -1;
     }
 
+    template <class T>
+    void merge_sort(ArrayList<T>& alist)
+    {
+        merge_sort_recursive(alist, 0, alist.size()-1);
+    }
+
+    template <class T>
+    void merge_sort_recursive(ArrayList<T>& alist, int left, int right)
+    {
+        if(left >= right)
+            return;
+        int middle = (int)((right_side - left_side)/2 + left_side);
+        merge_sort_recursive(alist, left, middle);
+        merge_sort_recursive(alist, middle + 1, right);
+        merge(alist, left, middle, right);
+    }
+
+    template <class T>
+    void merge(ArrayList<T>& alist, int left, int middle, int right)
+    {
+        return;
+    }
+
 }
