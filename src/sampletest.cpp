@@ -183,6 +183,13 @@ TEST_F(TestFixture, CopyConstructor2)
     EXPECT_EQ(new_copy[3], 9);
 }
 
+TEST_F(TestFixture, CopyConstructor3)
+{
+    ssuds::ArrayList<int> new_list = {1,5,7,9};
+    ssuds::ArrayList<int> new_copy(new_list);
+    EXPECT_EQ(new_copy[3], 9);
+}
+
 TEST_F(TestFixture, Bracket_OP1)
 {
     EXPECT_EQ(test_s[0], test_s.get(0));
