@@ -5,8 +5,16 @@
 
 namespace ssuds{
 
+    /// @brief enum class that makes it easy to change whether list is order in descending
+    ///         or ascending order.
     enum class sort_type {ASCENDING, DESCENDING};
 
+    /// @brief Uses the enum class to swap comparisons so order functions can order either in
+    ///         ascending or descending order.
+    /// @param val1 First value. 
+    /// @param val2 Second value.
+    /// @param stype enum class type.
+    /// @return bool of comparison check.
     template <class T>
     bool out_of_order(const T& val1, const T& val2, sort_type stype)
     {
@@ -16,6 +24,8 @@ namespace ssuds{
             return val1 < val2;
     }
 
+    /// @brief Function that takes array list and shuffles elements randomly using <random>
+    /// @param alist An ArrayList address.
     template <class T>
     void shuffle(ArrayList<T>& alist)
     {
@@ -31,11 +41,16 @@ namespace ssuds{
         }
     }
 
+    /// @brief Sorts an array list in either ascending or descending order; computes using 
+    ///         bubble sort algorithm. O(n^2).
+    /// @param alist ArrayList address.
+    /// @param stype sort_type
+    /// @return long long int of the number of swap operations performed.
     template <class T>
-    long int bubble_sort(ArrayList<T>& alist, sort_type stype)
+    long long int bubble_sort(ArrayList<T>& alist, sort_type stype)
     {
         int n = alist.size();
-        unsigned int num_swaps = 0;
+        long long int num_swaps = 0;
         for(int i = 0; i < (n-1); i++)
         {
             bool is_sorted = true;
@@ -150,6 +165,52 @@ namespace ssuds{
             operations++;
         }
         return operations;
+    }
+
+    /// @brief Swap function used to swap to variables. Needs to have
+    ///        pointers to actually alter variables outside function.
+    /// @param a Value1 that is being swapped.
+    /// @param b Value2 that is being swapped.
+    template <class T>
+    void swap(T* a, T* b)
+    {
+        T temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+
+    template <class T>
+    long int partition(ArrayList<T>& alist, int left, int right, sort_type stype, long int* op = nullptr)
+    {
+        int pivot = alist[right];
+        int i = (left - 1);
+        long int counter = 0;
+
+        for(int j = left; j <= right - 1; j++)
+        {
+            if(out_of_order(pivot, alist[j], stype))
+            {
+                i++;
+                swap(&alist[j], &alist[i]);
+                counter++;
+            }
+        }
+        swap(&alist[i + 1], &alist[right]);
+        counter++;
+        if(op != nullptr)
+            *op += counter;
+        return(i + 1);
+    }
+
+    template <class T>
+    void quicksort(ArrayList<T>& alist, int left, int right, sort_type stype, long int* op = nullptr)
+    {
+        if(left < right)
+        {
+            int pi = partition(alist, left, right, stype, op);
+            quicksort(alist, left, pi - 1, stype, op);
+            quicksort(alist, pi + 1, right, stype, op);
+        }
     }
 
 }

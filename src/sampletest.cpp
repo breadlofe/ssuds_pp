@@ -531,3 +531,25 @@ TEST_F(TestFixture, MergeSort4)
     ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
     EXPECT_EQ(ssuds::merge_sort(int_list, ssuds::sort_type::DESCENDING), 24);
 }
+
+TEST_F(TestFixture, QuickSort1)
+{
+    ssuds::ArrayList<int> int_list = {5, 4, 2, 1, 9, 8, 7, 11};
+    ssuds::quicksort(int_list, 0, int_list.size() - 1, ssuds::sort_type::ASCENDING);
+    EXPECT_EQ(int_list[1], 2);
+}
+
+TEST_F(TestFixture, QuickSort2)
+{
+    ssuds::ArrayList<int> int_list = {5, 4, 2, 1, 9, 8, 7, 11};
+    ssuds::quicksort(int_list, 0, int_list.size() - 1, ssuds::sort_type::DESCENDING);
+    EXPECT_EQ(int_list[1], 9);
+}
+
+TEST_F(TestFixture, QuickSort3)
+{
+    ssuds::ArrayList<int> int_list = {5, 4, 2, 1, 9, 8, 7, 11};
+    long int comparison_cntr[] = {0};
+    ssuds::quicksort(int_list, 0, int_list.size() - 1, ssuds::sort_type::ASCENDING, comparison_cntr);
+    EXPECT_EQ(*comparison_cntr, 20);
+}
