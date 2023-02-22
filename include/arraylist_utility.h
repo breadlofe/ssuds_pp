@@ -213,4 +213,41 @@ namespace ssuds{
         }
     }
 
+    template <class T>
+    long int heapify(ArrayList<T>& alist, int N, int i, sort_type stype)
+    {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        long int counter = 0;
+        if(left < N && out_of_order(alist[left], alist[largest], stype))
+            largest = left;
+        if(right < N && out_of_order(alist[right], alist[largest], stype))
+            largest = right;
+        if(largest != i)
+        {
+            swap(&alist[i], &alist[largest]);
+            counter++;
+            heapify(alist, N, largest, stype);
+        }
+        return counter;
+    }
+
+    template <class T>
+    long int heapsort(ArrayList<T>& alist, int N, sort_type stype)
+    {
+        long int counter = 0;
+        for(int i = N / 2 - 1; i >= 0; i--)
+        {
+            counter += heapify(alist, N, i, stype);
+        }
+        for(int i = N - 1; i >= 0; i--)
+        {
+            swap(&alist[0], &alist[i]);
+            counter++;
+            counter += heapify(alist, i, 0, stype);
+        }
+        return counter;
+    }
+
 }

@@ -553,3 +553,24 @@ TEST_F(TestFixture, QuickSort3)
     ssuds::quicksort(int_list, 0, int_list.size() - 1, ssuds::sort_type::ASCENDING, comparison_cntr);
     EXPECT_EQ(*comparison_cntr, 20);
 }
+
+TEST_F(TestFixture, HeapSort1)
+{
+    ssuds::ArrayList<int> int_list = {5, 4, 2, 1, 9, 11, 7, 8};
+    ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING);
+    EXPECT_EQ(int_list[7], 11);
+}
+
+TEST_F(TestFixture, HeapSort2)
+{
+    ssuds::ArrayList<int> int_list = {5, 4, 2, 1, 9, 11, 7, 8};
+    ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::DESCENDING);
+    EXPECT_EQ(int_list[7], 1);
+}
+
+TEST_F(TestFixture, HeapSort3)
+{
+    ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
+    //Best case is nlog(n), worst case is nlog(n), so nlog(base 2)(n)
+    EXPECT_LE(ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING), 24);
+}
