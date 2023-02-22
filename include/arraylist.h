@@ -275,8 +275,9 @@ public:
     }
 
     ///Finding function. Takes possible_item and start_index (type int) and returns int of index that matching item was in array
-    int find(const T possible_item, const unsigned int start_index=0)
+    int find(const T possible_item, const unsigned int start_index=0, long int* comp=nullptr)
     {
+        long int counter = 0;
         if(start_index>(mSize-1) || start_index<0) //had to change variable name since it defers in header and cpp file.
         {
             throw std::out_of_range("Index out of range.");
@@ -285,8 +286,17 @@ public:
         for(int i=start_index; i<mSize; i++)
         {
             if(mData[i] == possible_item)
+            {
+                counter++;
+                if(comp != nullptr)
+                    *comp = counter;
                 return i;
+            }
+            else
+                counter++;
         }
+        if(comp != nullptr)
+            *comp = counter;
         return -1;
         }
     }

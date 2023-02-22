@@ -295,6 +295,14 @@ TEST_F(TestFixture, Find4)
     EXPECT_EQ(test_s.find("Logan", 3), 4);
 }
 
+TEST_F(TestFixture, Find5)
+{
+    ssuds::ArrayList<int> int_list = {5, 4, 2, 1, 9, 8, 7, 11};
+    long int comparison_cntr[] = {0};
+    int_list.find(2, 0, comparison_cntr);
+    EXPECT_EQ(*comparison_cntr, 3);
+}
+
 TEST_F(TestFixture, Iterator1)
 {
     test_it_i = test_i.begin();
@@ -572,5 +580,6 @@ TEST_F(TestFixture, HeapSort3)
 {
     ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
     //Best case is nlog(n), worst case is nlog(n), so nlog(base 2)(n)
-    EXPECT_LE(ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING), 24);
+    EXPECT_GT(ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING), 0);
+    EXPECT_LT(ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING), 24);
 }
