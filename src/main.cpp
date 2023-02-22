@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     std::uniform_int_distribution<int> distribution(0,1000);
     fp << "SampleSize, MStime, MSops, BStime, BSops, QStime, QSops, HStime, HSops, Ltime, Lcomp, Btime, Bcomp  \n";
 
-    for (int z = 1000; z <= 2000; z += 1000)
+    for (int z = 1000; z <= 201000; z += 1000)
     {
         ssuds::ArrayList<int> alist;
         fp << z << ", ";
