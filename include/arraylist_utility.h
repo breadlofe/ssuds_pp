@@ -250,4 +250,27 @@ namespace ssuds{
         return counter;
     }
 
+    template <class T>
+    void burnsort(ArrayList<T>& alist)
+    {
+        T max;
+        T min;
+        for(int j = 0; j < alist.size(); j++)
+        {
+            min = alist[j];
+            max = alist[alist.size() - 1 - j];
+            for(int i = j; i < alist.size() - j; i++)
+            {
+                if(alist[i] > max)
+                    max = alist[i];
+                if(alist[i] < min)
+                    min = alist[i];
+            }
+            if(min < max){
+            swap(&alist[alist.find(min)], &alist[j]);
+            swap(&alist[alist.find(max)], &alist[alist.size() - 1 - j]);
+            }
+        }
+    }
+
 }

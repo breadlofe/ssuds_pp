@@ -583,3 +583,10 @@ TEST_F(TestFixture, HeapSort3)
     EXPECT_GT(ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING), 0);
     EXPECT_LT(ssuds::heapsort(int_list, int_list.size(), ssuds::sort_type::ASCENDING), 24);
 }
+
+TEST_F(TestFixture, BurnSort1)
+{
+    ssuds::ArrayList<int> int_list = {8, 5, 2, 1, 6, 9, 10, 3};
+    ssuds::burnsort(int_list);
+    EXPECT_EQ(int_list[1], 2);
+}
