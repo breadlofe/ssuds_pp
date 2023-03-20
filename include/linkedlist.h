@@ -29,6 +29,17 @@ protected:
         }
     };
 
+    ///Node pointer that points to the very first node in the linked list.
+    Node* mStart;
+
+    ///Node pointer that points to the very last node in the linked list.
+    Node* mEnd;
+
+    ///Int that contains the size of the linked list.
+    int mSize;
+
+public:
+
     ///Iterator class for LinkedList
     class Iterator
     {
@@ -121,16 +132,6 @@ protected:
 
     };
 
-    ///Node pointer that points to the very first node in the linked list.
-    Node* mStart;
-
-    ///Node pointer that points to the very last node in the linked list.
-    Node* mEnd;
-
-    ///Int that contains the size of the linked list.
-    int mSize;
-
-public:
     ///Constructor for linked list class; sets size to 0 and pointers equal to null.
     LinkedList()
     {
@@ -200,7 +201,7 @@ public:
 
     ///Takes ostream and LinkedList& and returns string of what values the linked list
     ///contains. Uses while loop to go through node by node to add values to ostream.
-    friend std::ostream& operator<<(std::ostream& os, const LinkedList& alist)
+    friend std::ostream& operator<<(std::ostream& os, LinkedList& alist)
     {
         const LinkedList<T>::Node* cur_node = alist.mStart;
         os << "[";
@@ -208,7 +209,7 @@ public:
         while(cur_node != nullptr)
         {
             os << cur_node->mData;
-            if(i < alist.mSize() - 1)
+            if(i < alist.size() - 1)
             {
                 os << ", ";
             }
