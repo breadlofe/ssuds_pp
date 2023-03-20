@@ -1,6 +1,7 @@
 #include <gtest/gtest.h> 
 #include "arraylist.h"
 #include "arraylist_utility.h"
+#include "linkedlist.h"
 
 class TestFixture : public::testing::Test
 {

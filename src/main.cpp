@@ -5,6 +5,7 @@
 #include <random>
 #include "arraylist.h"
 #include "arraylist_utility.h"
+#include "linkedlist.h"
 
 int main(int argc, char** argv) {
 
