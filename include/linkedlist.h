@@ -33,26 +33,33 @@ protected:
     class Iterator
     {
     protected:
+        ///Int that holds position of iterator.
         int mIndex;
+
+        ///Pointer to linked list.
         LinkedList* mList;
 
     public:
+        ///Default constructor.
         Iterator()
         {
             //Default.
         }
 
+        ///Constructor for iterator that takes start index and linked list pointer.
         Iterator(int index, LinkedList* linkedlist)
         {
             mIndex = index;
             mList = linkedlist;
         }
 
+        ///Returns what value iterator is pointing at in linked list.
         T& operator*()
         {
             return (*mList)[mIndex];
         }
 
+        ///Moves iterator one forward.
         void operator++()
         {
             if(mIndex >= mList->size() - 1)
@@ -106,6 +113,7 @@ protected:
             }
         }
 
+        ///Returns position of iterator. 
         int index()
         {
             return mIndex;
@@ -243,6 +251,7 @@ public:
         return Iterator(-1, nullptr);
     }
 
+    ///Takes item and returns iterator at location of item if found, returns end iterator if not. 
     Iterator find(const T item)
     {
         Node* cur_node = mStart;
