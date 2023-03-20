@@ -29,6 +29,90 @@ protected:
         }
     };
 
+    ///Iterator class for LinkedList
+    class Iterator
+    {
+    protected:
+        int mIndex;
+        LinkedList* mList;
+
+    public:
+        Iterator()
+        {
+            //Default.
+        }
+
+        Iterator(int index, LinkedList* linkedlist)
+        {
+            mIndex = index;
+            mList = linkedlist;
+        }
+
+        T& operator*()
+        {
+            return (*mList)[mIndex];
+        }
+
+        void operator++()
+        {
+            if(mIndex >= mList->size() - 1)
+            {
+                mIndex = -1;
+                mList = nullptr;
+            }
+            else
+                mIndex++;
+        }
+
+        ///Comparison operator to see if two iterators hold same values and are pointing to same location.
+        bool operator==(const Iterator& other)
+        {
+            if(mIndex == -1 && other.mIndex == -1)
+                return true;
+            else if(mIndex != -1 && other.mIndex == -1)
+                return false;
+            else{
+                if(mList->size() != other.mList->size())
+                    return false;
+                for(int i =0; i < mList->size(); i++)
+                {
+                    if((*mList)[i] != (*other.mList)[i])
+                        return false;
+                }
+                if((*mList)[mIndex] != (*other.mList)[other.mIndex])
+                    return false;
+                return true;
+            }
+        }
+
+        ///Inverse of comparison operator above. 
+        bool operator!=(const Iterator& other)
+        {
+            if(mIndex == -1 && other.mIndex == -1)
+                return false;
+            else if(mIndex != -1 && other.mIndex == -1)
+                return true;
+            else{
+                if(mList->size() != other.mList->size())
+                    return true;
+                for(int i =0; i < mList->size(); i++)
+                {
+                    if((*mList)[i] != (*other.List)[i])
+                        return true;
+                }
+                if((*mList)[mIndex] != (*other.mList)[other.mIndex])
+                    return true;
+                return false;
+            }
+        }
+
+        int index()
+        {
+            return mIndex;
+        }
+
+    };
+
     ///Node pointer that points to the very first node in the linked list.
     Node* mStart;
 
@@ -142,6 +226,35 @@ public:
             }
             return cur_node->mData;
         }
+    }
+
+    ///Returns iterator, if data is there, to beggining of ArrayList.
+    Iterator begin()
+    {
+		if (mSize == 0)
+			return Iterator(-1, nullptr);
+		else
+			return Iterator(0, this);
+    }
+
+    ///Return iterator of one after end of ArrayList.
+    Iterator end()
+    {
+        return Iterator(-1, nullptr);
+    }
+
+    Iterator find(const T item)
+    {
+        Node* cur_node = mStart;
+        int i = 0;
+        while(cur_node != nullptr)
+        {
+            if(cur_node->mData == item)
+                return Iterator(i, this);
+            i++;
+            cur_node = cur_node->mNext;
+        }
+        return Iterator(-1, nullptr);
     }
 
 };
