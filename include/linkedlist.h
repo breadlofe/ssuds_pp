@@ -119,7 +119,7 @@ public:
                     return true;
                 for(int i =0; i < mList->size(); i++)
                 {
-                    if((*mList)[i] != (*other.List)[i])
+                    if((*mList)[i] != (*other.mList)[i])
                         return true;
                 }
                 if((*mList)[mIndex] != (*other.mList)[other.mIndex])

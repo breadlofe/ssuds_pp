@@ -65,5 +65,10 @@ namespace ssuds{
         {
             return mInternalList.end();
         }
+
+        friend std::ostream& operator<<(std::ostream& os, Queue& q)
+        {
+            return os << q.mInternalList;
+        }
     };
 }

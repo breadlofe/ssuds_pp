@@ -113,9 +113,72 @@ TEST_F(QueueTestFixture, Empty3)
 TEST_F(QueueTestFixture, Iterator1)
 {
     ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.begin();
-    EXPECT_EQ(*test_qi_itr, 2);
+    EXPECT_EQ(*test_qi_itr, test_qi.head());
     ++test_qi_itr;
     EXPECT_EQ(*test_qi_itr, -1);
+}
+
+TEST_F(QueueTestFixture, Iterator2)
+{
+    ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.begin();
+    EXPECT_EQ(*test_qi_itr, 2);
+    test_qi.dequeue();
+    EXPECT_EQ(*test_qi_itr, -1);
+}
+
+TEST_F(QueueTestFixture, Iterator3)
+{
+    ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.end();
+    EXPECT_EQ(test_qi_itr.index(), -1);
+}
+
+TEST_F(QueueTestFixture, Iterator4)
+{
+    ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.begin();
+    int combined = 0;
+    for(combined; test_qi_itr.index() != -1; ++test_qi_itr)
+    {
+        combined += *test_qi_itr;
+    }
+    EXPECT_EQ(combined, 9);
+}
+
+TEST_F(QueueTestFixture, Iterator5)
+{
+    ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.begin();
+    int combined = 0;
+    for(combined; test_qi_itr != test_qi.end(); ++test_qi_itr)
+    {
+        combined += *test_qi_itr;
+    }
+    EXPECT_EQ(combined, 9);
+}
+
+TEST_F(QueueTestFixture, Iterator6)
+{
+    ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.begin();
+    int combined = 0;
+    for(combined; test_qi.size() != 0; test_qi.dequeue())
+    {
+        combined += *test_qi_itr;
+    }
+    EXPECT_EQ(combined, 9);
+}
+
+TEST_F(QueueTestFixture, OStream1)
+{
+    testing::internal::CaptureStdout();
+    std::cout << test_qs;
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "[Patrick]");
+}
+
+TEST_F(QueueTestFixture, OStream2)
+{
+    testing::internal::CaptureStdout();
+    std::cout << test_qi;
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "[2, -1, 3, 0, 4, 1]");
 }
 
 #endif
