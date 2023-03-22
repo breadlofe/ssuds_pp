@@ -11,6 +11,11 @@ class QueueTestFixture : public::testing::Test
 protected:
     void SetUp() override {
         test_qs.enqueue("Patrick");
+        for(int i = 0; i < 3; i++)
+        {
+            test_qi.enqueue(i + 2);
+            test_qi.enqueue(i - 1);
+        }
     }
     ssuds::Queue<int> test_qi;
     ssuds::Queue<float> test_qf;
@@ -29,15 +34,15 @@ TEST_F(QueueTestFixture, Head1)
 
 TEST_F(QueueTestFixture, Head2)
 {
-    EXPECT_THROW(test_qi.head(), std::out_of_range);
+    EXPECT_THROW(test_qf.head(), std::out_of_range);
 }
 
 TEST_F(QueueTestFixture, Enqueue1)
 {
     test_qi.enqueue(1);
     test_qi.enqueue(7);
-    EXPECT_EQ(test_qi.size(), 2);
-    EXPECT_EQ(test_qi.head(), 1);
+    EXPECT_EQ(test_qi.size(), 8);
+    EXPECT_EQ(test_qi.head(), 2);
 }
 
 TEST_F(QueueTestFixture, Enqueue2)
@@ -86,23 +91,31 @@ TEST_F(QueueTestFixture, Clear2)
 
 TEST_F(QueueTestFixture, Empty1)
 {
-    EXPECT_TRUE(test_qi.empty());
+    EXPECT_TRUE(test_qf.empty());
 }
 
 TEST_F(QueueTestFixture, Empty2)
 {
-    EXPECT_TRUE(test_qi.empty());
-    test_qi.enqueue(3);
-    EXPECT_FALSE(test_qi.empty());
+    EXPECT_TRUE(test_qf.empty());
+    test_qf.enqueue(3.0f);
+    EXPECT_FALSE(test_qf.empty());
 }
 
 TEST_F(QueueTestFixture, Empty3)
 {
-    EXPECT_TRUE(test_qi.empty());
-    test_qi.enqueue(3);
-    EXPECT_FALSE(test_qi.empty());
-    test_qi.dequeue();
-    EXPECT_TRUE(test_qi.empty());
+    EXPECT_TRUE(test_qf.empty());
+    test_qf.enqueue(3.0f);
+    EXPECT_FALSE(test_qf.empty());
+    test_qf.dequeue();
+    EXPECT_TRUE(test_qf.empty());
+}
+
+TEST_F(QueueTestFixture, Iterator1)
+{
+    ssuds::LinkedList<int>::Iterator test_qi_itr = test_qi.begin();
+    EXPECT_EQ(*test_qi_itr, 2);
+    ++test_qi_itr;
+    EXPECT_EQ(*test_qi_itr, -1);
 }
 
 #endif

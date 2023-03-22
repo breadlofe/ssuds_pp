@@ -55,5 +55,15 @@ namespace ssuds{
             else
                 return false;
         }
+
+        typename LinkedList<T>::Iterator begin()
+        {
+            return mInternalList.begin();
+        }
+
+        typename LinkedList<T>::Iterator end()
+        {
+            return mInternalList.end();
+        }
     };
 }
