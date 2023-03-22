@@ -148,7 +148,7 @@ public:
         while(base != nullptr)
         {
             next = base->mNext;
-            delete[] base;
+            delete base;
             base = next;
         }
     }
