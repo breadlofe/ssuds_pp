@@ -2,7 +2,7 @@
 #include "queue.h"
 #include "linkedlist.h"
 
-#define QUEUE_TEST 1
+#define QUEUE_TEST 0
 
 #if QUEUE_TEST
 

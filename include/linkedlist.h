@@ -241,6 +241,21 @@ public:
         }
     }
 
+    T& get(const int index)
+    {
+        if(index>(mSize-1) || index<0)
+            throw std::out_of_range("Index out of range.");
+        else
+        {
+            Node* cur_node = mStart;
+            for(int i = 0; i < index; i++)
+            {
+                cur_node = cur_node->mNext;
+            }
+            return cur_node->mData;
+        }
+    }
+
     ///Returns iterator, if data is there, to beggining of ArrayList.
     Iterator begin()
     {
