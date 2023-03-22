@@ -3,6 +3,10 @@
 
 namespace ssuds{
 
+//Decleration to use friend of class queue for has-a relationship.
+template <class T>
+class Queue;
+
 ///Class that holds given data in dynamic linked list. 
 template <class T>
 class LinkedList
@@ -266,6 +270,9 @@ public:
         }
         return Iterator(-1, nullptr);
     }
+
+    //Makes so I can use internal attributes in Queue.
+    friend class Queue<T>;
 
 };
 

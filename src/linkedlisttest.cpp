@@ -3,7 +3,7 @@
 #include "arraylist_utility.h"
 #include "linkedlist.h"
 
-#define LINKED_LIST_TEST 1
+#define LINKED_LIST_TEST 0
 
 #if LINKED_LIST_TEST
 
