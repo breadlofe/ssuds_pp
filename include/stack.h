@@ -44,10 +44,7 @@ namespace ssuds{
 
         bool empty()
         {
-            if(this->size() == 0)
-                return true;
-            else
-                return false;
+            return this->size() == 0;
         }
 
         friend std::ostream& operator<<(std::ostream& os, Stack& S)
