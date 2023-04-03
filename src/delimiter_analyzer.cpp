@@ -20,7 +20,7 @@ ssuds::DelimiterAnalyzer::Token::Token(TokenType T, int num, int pos)
 ssuds::DelimiterAnalyzer::DelimiterAnalyzer(std::string fname)
 {
     mTokenStack.clear();
-    file = std::fstream(fname, std::ios::out);
+    file = std::fstream(fname, std::ios::in);
 }
 
 std::string ssuds::DelimiterAnalyzer::process()
