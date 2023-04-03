@@ -6,9 +6,11 @@
 #include "arraylist.h"
 #include "arraylist_utility.h"
 #include "linkedlist.h"
+#include "delimiter_analyzer.h"
 
 int main(int argc, char** argv) {
-
+    // ssuds::DelimiterAnalyzer easy1 = ssuds::DelimiterAnalyzer("test_files/easy01.lsp");
+    // std::cout << easy1.process();
 //     std::fstream fp("results.csv", std::ios::out);
 //     std::default_random_engine generator;
 //     std::uniform_int_distribution<int> distribution(0,1000);

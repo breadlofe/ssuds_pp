@@ -18,7 +18,7 @@ ssuds::DelimiterAnalyzer::DelimiterAnalyzer(std::string fname)
     file = std::fstream(fname, std::ios::out);
 }
 
-void ssuds::DelimiterAnalyzer::process()
+std::string ssuds::DelimiterAnalyzer::process()
 {
     int j = 0;
     std::string cur_line;
@@ -52,24 +52,21 @@ void ssuds::DelimiterAnalyzer::process()
                     mTokenStack.pop();
                 }
 
-                // else if(!closing_matches(cur_line[i], mTokenStack.top().type))
-                // {
-                //     //output << "Mismatched tokens at position: " << i 
-                //     //<< ", and on line: " << j << std::endl;
-                //     std::cout << "bye";
-                // }
+                else if(!closing_matches(cur_line[i], mTokenStack.top().type))
+                {
+                    output << "Mismatched tokens at position: " << i 
+                    << ", and on line: " << j << std::endl;
+                }
             }
         }
         j++;
     }
 
-    // if(!mTokenStack.empty())
-    //     std::cout << "hi";
-    //     //output << "Mismatched tokens. Opening token, but no closing token." << std::endl;
-    // else
-    //     std::cout << "try";
-    //     //output << "All good!" << std::endl;
-    // //return output.str();
+    if(!mTokenStack.empty())
+        output << "Mismatched tokens. Opening token, but no closing token." << std::endl;
+    else
+        output << "All good!" << std::endl;
+    return output.str();
 }
 
 bool ssuds::DelimiterAnalyzer::is_opening(char c)
