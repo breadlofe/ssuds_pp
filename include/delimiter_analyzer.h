@@ -1,6 +1,7 @@
 #pragma once
 #include "stack.h"
 #include <string>
+#include <fstream>
 
 class DelimiterAnalyzer
 {
@@ -9,13 +10,15 @@ public:
     class Token
     {
     public:
+        Token(TokenType T, int num, int pos);
         TokenType type;
         int line_num;
         int char_pos;
     };
 
+    std::fstream file;
     DelimiterAnalyzer(std::string fname);
-    void process();
+    std::string process();
 
 protected:
     ssuds::Stack<Token> mTokenStack;
