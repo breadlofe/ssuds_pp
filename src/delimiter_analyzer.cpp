@@ -1,5 +1,6 @@
 #include "delimiter_analyzer.h"
 #include "stack.h"
+#include "queue.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -17,15 +18,21 @@ ssuds::DelimiterAnalyzer::Token::Token(TokenType T, int num, int pos)
     line_num = num;
 }
 
+ssuds::DelimiterAnalyzer::DelimiterAnalyzer()
+{
+    //default
+}
+
 ssuds::DelimiterAnalyzer::DelimiterAnalyzer(std::string fname)
 {
     mTokenStack.clear();
-    file = std::fstream(fname, std::ios::in);
+    filename = fname;
 }
 
 std::string ssuds::DelimiterAnalyzer::process()
 {
     int j = 0;
+    std::fstream file = std::fstream(filename, std::ios::in);
     std::string cur_line;
     std::ostringstream output;
     while(!file.eof())
@@ -48,19 +55,28 @@ std::string ssuds::DelimiterAnalyzer::process()
                         token = TokenType::CURLY;
                     else
                         token = TokenType::SQUARE;
-                    Token new_token(token, i, i);
+                    Token new_token(token, j, i);
                     mTokenStack.push(new_token);
                 }
 
-                else if(closing_matches(cur_line[i], mTokenStack.top().type))
+                else if(!mTokenStack.empty() && 
+                closing_matches(cur_line[i], mTokenStack.top().type))
                 {
                     mTokenStack.pop();
                 }
 
-                else if(!closing_matches(cur_line[i], mTokenStack.top().type))
+                else if(!mTokenStack.empty() && 
+                !closing_matches(cur_line[i], mTokenStack.top().type))
                 {
                     output << "Mismatched tokens at position: " << i 
                     << ", and on line: " << j << std::endl;
+                    return output.str();
+                }
+
+                else if(mTokenStack.empty())
+                {
+                    output << "Mismatched tokens. Closing token, but no opening token" << std::endl;
+                    return output.str();
                 }
             }
         }

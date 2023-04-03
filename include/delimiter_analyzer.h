@@ -18,9 +18,12 @@ public:
         int char_pos;
     };
 
-    std::fstream file;
+    std::string filename;
+    DelimiterAnalyzer();
     DelimiterAnalyzer(std::string fname);
     std::string process();
+
+
 
 protected:
     ssuds::Stack<Token> mTokenStack;

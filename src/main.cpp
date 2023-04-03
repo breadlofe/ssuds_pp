@@ -7,6 +7,7 @@
 #include "arraylist_utility.h"
 #include "linkedlist.h"
 #include "delimiter_analyzer.h"
+#include "queue.h"
 
 int main(int argc, char** argv) {
     // ssuds::DelimiterAnalyzer easy1 = ssuds::DelimiterAnalyzer("test_files/easy01.lsp");
