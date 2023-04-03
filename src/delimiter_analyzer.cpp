@@ -5,20 +5,20 @@
 #include <fstream>
 #include <sstream>
 
-DelimiterAnalyzer::Token::Token(TokenType T, int num, int pos)
+ssuds::DelimiterAnalyzer::Token::Token(TokenType T, int num, int pos)
 {
     type = T;
     char_pos = pos;
     line_num = num;
 }
 
-DelimiterAnalyzer::DelimiterAnalyzer(std::string fname)
+ssuds::DelimiterAnalyzer::DelimiterAnalyzer(std::string fname)
 {
     mTokenStack.clear();
     file = std::fstream(fname, std::ios::out);
 }
 
-std::string DelimiterAnalyzer::process()
+void ssuds::DelimiterAnalyzer::process()
 {
     int j = 0;
     std::string cur_line;
@@ -52,24 +52,27 @@ std::string DelimiterAnalyzer::process()
                     mTokenStack.pop();
                 }
 
-                else if(!closing_matches(cur_line[i], mTokenStack.top().type))
-                {
-                    output << "Mismatched tokens at position: " << i 
-                    << ", and on line: " << j << std::endl;
-                }
+                // else if(!closing_matches(cur_line[i], mTokenStack.top().type))
+                // {
+                //     //output << "Mismatched tokens at position: " << i 
+                //     //<< ", and on line: " << j << std::endl;
+                //     std::cout << "bye";
+                // }
             }
         }
         j++;
     }
 
-    if(!mTokenStack.empty())
-        output << "Mismatched tokens. Opening token, but no closing token." << std::endl;
-    else
-        output << "All good!" << std::endl;
-    return output.str();
+    // if(!mTokenStack.empty())
+    //     std::cout << "hi";
+    //     //output << "Mismatched tokens. Opening token, but no closing token." << std::endl;
+    // else
+    //     std::cout << "try";
+    //     //output << "All good!" << std::endl;
+    // //return output.str();
 }
 
-bool DelimiterAnalyzer::is_opening(char c)
+bool ssuds::DelimiterAnalyzer::is_opening(char c)
 {
     if(c == '(')
         return true;
@@ -81,7 +84,7 @@ bool DelimiterAnalyzer::is_opening(char c)
         return false;
 }
 
-bool DelimiterAnalyzer::closing_matches(char c, TokenType opening_type)
+bool ssuds::DelimiterAnalyzer::closing_matches(char c, TokenType opening_type)
 {
     if(opening_type == TokenType::PAREN && c == ')')
         return true;

@@ -3,6 +3,8 @@
 #include <string>
 #include <fstream>
 
+namespace ssuds
+{
 class DelimiterAnalyzer
 {
 public:
@@ -18,10 +20,11 @@ public:
 
     std::fstream file;
     DelimiterAnalyzer(std::string fname);
-    std::string process();
+    void process();
 
 protected:
     ssuds::Stack<Token> mTokenStack;
     bool is_opening(char c);
     bool closing_matches(char c, TokenType opening_type);
 };
+}

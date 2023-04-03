@@ -2,7 +2,7 @@
 #include "stack.h"
 #include "linkedlist.h"
 
-#define STACK_TEST 1
+#define STACK_TEST 0
 
 #if STACK_TEST
 
