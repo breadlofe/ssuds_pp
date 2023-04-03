@@ -5,6 +5,11 @@
 #include <fstream>
 #include <sstream>
 
+ssuds::DelimiterAnalyzer::Token::Token()
+{
+    //default
+}
+
 ssuds::DelimiterAnalyzer::Token::Token(TokenType T, int num, int pos)
 {
     type = T;
