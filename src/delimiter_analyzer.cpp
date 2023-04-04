@@ -38,6 +38,7 @@ std::string ssuds::DelimiterAnalyzer::process()
     while(!file.eof())
     {
         std::getline(file, cur_line);
+        //std::cout << cur_line.size() << std::endl;
         for(int i = 0; i < cur_line.size(); i++)
         {
             if(cur_line[i] != '(' && cur_line[i] != ')' &&
@@ -62,6 +63,12 @@ std::string ssuds::DelimiterAnalyzer::process()
                 else if(!mTokenStack.empty() && 
                 closing_matches(cur_line[i], mTokenStack.top().type))
                 {
+                    // if(mTokenStack.top().type == TokenType::PAREN)
+                    //     std::cout << "paren" << std::endl;
+                    // else if(mTokenStack.top().type == TokenType::CURLY)
+                    //     std::cout << "curly" << std::endl;
+                    // else if(mTokenStack.top().type == TokenType::SQUARE)
+                    //     std::cout << "square" << std::endl;
                     mTokenStack.pop();
                 }
 
