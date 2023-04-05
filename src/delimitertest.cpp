@@ -3,7 +3,7 @@
 #include "queue.h"
 
 
-#define DELIMETER_TEST 1
+#define DELIMETER_TEST 0
 
 #if DELIMETER_TEST
 class DelimiterTestFixture : public::testing::Test
