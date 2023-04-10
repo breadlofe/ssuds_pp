@@ -3,18 +3,43 @@
 namespace ssuds{
 
 template <class T>
+/// @brief Class of an ordered set, or tree.
 class Set
 {
 protected:
+    /// @brief Class containing the information of each individual node in the Set.
     class node
     {
     protected:
+        /// @brief Data of type T stored in node class.
         T mData;
+
+        /// @brief Pointers to children of current node.
         node * mLeft, * mRight;
+
+        /// @brief Pointer to parent of current node.
         node * mParent;
     public:
+        /// @brief Default constructor so C++ doesn't kill me. Unused.
+        node() {}
+
+        /// @brief Default constructor for node. Sets mData to given data and all
+        ///         tree leaves to NULL.
+        /// @param data Given data of first root node.
         node(T data) : mData(data), mLeft(NULL), mRight(NULL), mParent(NULL) {}
 
+        /// @brief Default descructor for node class. Deletes right and left for
+        ///         "cascading" effect.
+        ~node() 
+        {
+            delete mRight;
+            delete mLeft;
+        }
+
+        /// @brief Recursive function for add. Adds children based on the value being greater
+        ///         or less than the value of what is stored in the current node.
+        /// @param val Desired value to be inserted.
+        /// @return Returns bool: true if value has been inserted, false if not.
         bool add_recursive(const T& val)
         {
             if(val < mData)
@@ -96,11 +121,40 @@ protected:
         }
     };
 
+    /// @brief Pointer to the whole node which contains information of node class.
     node * mRoot;
+
+    /// @brief Int representing the amount of nodes in the tree, NOT the height.
     int mSize;
 public:
+    /// @brief Default constructor for Set class. Sets mRoot to NULL and mSize to 0.
     Set() : mSize(0), mRoot(nullptr) {}
 
+    /// @brief Destructor for the whole set. Destroys from buttom up.
+    ~Set()
+    {
+        // node* start = mRoot;
+        // while(mRoot != nullptr) //Question 1
+        // {
+        //     if(start->mRight == NULL && start->mLeft == NULL)
+        //     {
+        //         delete start;
+        //         start = start->mParent; //Question 2
+        //     }
+        //     else
+        //     {
+        //         if(start->mRight != NULL)
+        //             start = start->mRight;
+        //         else if(start->mLeft != NULL)
+        //             start = start->mLeft;
+        //     }
+        // }
+        delete mRoot;
+    }
+
+    /// @brief Adds, or inserts, node to tree based on value.
+    /// @param val Desired value, inputed by user, to be inserted.
+    /// @return Returns bool: true if insert was successful,false if not.
     bool add(const T& val)
     {
         if(mRoot == NULL)
@@ -139,10 +193,17 @@ public:
         if(mRoot != NULL)
         {
             unsigned int total_height = 1;
-            return total_height + mRoot->get_height_recursive()
+            return total_height + mRoot->get_height_recursive();
         }
         else
             return 0;
+    }
+
+    /// @brief Function for getting size of the set.
+    /// @return Returns int for size of set.
+    int size()
+    {
+        return mSize;
     }
 };
 }
