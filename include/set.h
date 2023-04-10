@@ -14,8 +14,8 @@ protected:
         node * mParent;
     public:
         node(T data) : mData(data), mLeft(NULL), mRight(NULL), mParent(NULL) {}
-        
-        void add_recursive(T val)
+
+        bool add_recursive(const T& val)
         {
             if(val < mData)
             {
@@ -23,7 +23,26 @@ protected:
                 {
                     return mLeft->add_recursive(val);
                 }
+                else
+                {
+                    mLeft = new node(val);
+                    return true;
+                }
             }
+            else if(val > mData)
+            {
+                if(mRight != NULL)
+                {
+                    return mRight->add_recursive(val);
+                }
+                else
+                {
+                    mRight = new node(val);
+                    return true;
+                }
+            }
+            else
+                return false;
         }
 
         /// @brief Recursive function for contains that checks fist if the value given
@@ -80,15 +99,26 @@ protected:
     node * mRoot;
     int mSize;
 public:
-    void add(T val)
+    Set() : mSize(0), mRoot(nullptr) {}
+
+    bool add(const T& val)
     {
         if(mRoot == NULL)
         {
             mRoot = new node(val);
             mSize++;
+            return true;
         }
         else
-            mRoot->add_recursive(val);
+        {
+            if(mRoot->add_recursive(val))
+            {
+                mSize++;
+                return true;
+            }
+            else
+                false;
+        }
     }
 
     /// @brief Function that first checks if root is NULL. If not, calls contains_recursive().
