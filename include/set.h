@@ -1,6 +1,11 @@
 #pragma once
+#include "arraylist.h"
+#include "arraylist_utility.h"
 
 namespace ssuds{
+
+/// @brief Enum class that gives option of sorting types of traversal function.
+enum class TraversalType {PRE, POST, SORT};
 
 template <class T>
 /// @brief Class of an ordered set, or tree.
@@ -119,6 +124,26 @@ protected:
             else
                 return left_height;
         }
+
+        void traversal_recursive(ArrayList<T>& storage, TraversalType tp)
+        {
+            if(tp == TraversalType::POST)
+            {
+                storage.append(mData);
+                if(mLeft != NULL)
+                    mLeft->traversal_recursive(storage, tp);
+                if(mRight != NULL) // Question 1
+                    mRight->traversal_recursive(storage, tp);
+            }
+            else if(tp == TraversalType::PRE)
+            {
+                if(mLeft != NULL)
+                    mLeft->traversal_recursive(storage, tp);
+                if(mRight != NULL)
+                    mRight->traversal_recursive(storage, tp);
+                storage.append(mData);
+            }
+        }
     };
 
     /// @brief Pointer to the whole node which contains information of node class.
@@ -133,22 +158,6 @@ public:
     /// @brief Destructor for the whole set. Destroys from buttom up.
     ~Set()
     {
-        // node* start = mRoot;
-        // while(mRoot != nullptr) //Question 1
-        // {
-        //     if(start->mRight == NULL && start->mLeft == NULL)
-        //     {
-        //         delete start;
-        //         start = start->mParent; //Question 2
-        //     }
-        //     else
-        //     {
-        //         if(start->mRight != NULL)
-        //             start = start->mRight;
-        //         else if(start->mLeft != NULL)
-        //             start = start->mLeft;
-        //     }
-        // }
         delete mRoot;
     }
 
@@ -204,6 +213,15 @@ public:
     int size()
     {
         return mSize;
+    }
+
+    ArrayList<T> traversal(TraversalType tp)
+    {
+        ArrayList<T> A;
+        mRoot->traversal_recursive(A, tp);
+        // if(tp == TraversalType::SORT)
+        //     quicksort(A, 0, A.size()-1, ssuds::sort_type::ASCENDING);
+        return A;
     }
 };
 }

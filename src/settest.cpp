@@ -1,5 +1,6 @@
 #include <gtest/gtest.h> 
 #include "set.h"
+#include "arraylist.h"
 
 #define SET_TEST 1
 
@@ -51,6 +52,16 @@ TEST_F(SetTestFixture, Height1)
     test_ss.add("Bob");
     test_ss.add("John");
     EXPECT_EQ(test_ss.get_height(), 2);
+}
+
+TEST_F(SetTestFixture, Traversal1)
+{
+    test_ss.add("Bob");
+    test_ss.add("John");
+    ssuds::ArrayList<std::string> A;
+    A.append("Bob");
+    A.append("John");
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::POST)[0], A[0]);
 }
 
 #endif
