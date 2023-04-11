@@ -162,6 +162,56 @@ protected:
                 mRight->clear_recursive();
             }
         }
+
+        node* erase_recursive(const T& val)
+        {
+            if(mData != val)
+            {
+                if(mLeft != NULL)
+                    mLeft->erase_recursive(val);
+                if(mRight != NULL)
+                    mRight->erase_recursive(val);
+            }
+            else
+            {
+                if(mLeft == NULL && mRight == NULL) //CASE 1
+                    return nullptr;
+                else if(mRight != NULL && mLeft == NULL) //CASE 2A
+                {
+                    node* temp = mRight;
+                    mData = temp->mData;
+                    mLeft = temp->mLeft;
+                    mRight = temp->mRight;
+                    //delete temp;
+                    return nullptr;
+                }
+                else if(mRight == NULL && mLeft != NULL) //CASE 2B
+                {
+                    node* temp = mLeft;
+                    mData = temp->mData;
+                    mLeft = temp->mLeft;
+                    mRight = temp->mRight;
+                    //delete temp;
+                    return nullptr;
+                }
+                else if(mLeft != NULL && mRight != NULL) //CASE 3
+                {
+                    node* temp = mRight;
+                    while(temp->mLeft != NULL)
+                    {
+                        temp = temp->mLeft;
+                    }
+                    mData = temp->mData;
+                    //delete temp;
+                    return nullptr;
+                }
+                else
+                {
+                    throw std::out_of_range("What are you doing? How did you get here?");
+                }
+                return this;
+            }
+        }
     };
 
     /// @brief Pointer to the whole node which contains information of node class.
@@ -269,6 +319,21 @@ public:
         mRoot->clear_recursive();
         mSize = 0;
         mRoot = NULL;
+    }
+
+    bool erase(const T& val)
+    {
+        if(!this->contains(val))
+        {
+            return false;
+        }
+        else
+        {
+            mSize--;
+            if(mRoot->erase_recursive(val) == NULL)
+                return true;
+            return false;
+        }
     }
 };
 }

@@ -10,10 +10,18 @@ class SetTestFixture : public::testing::Test
 {
 protected:
     void SetUp() override {
+        test_big.add("M");
+        test_big.add("G");
+        test_big.add("S");
+        test_big.add("B");
+        test_big.add("A");
+        test_big.add("D");
+        test_big.add("C");
     }
     ssuds::Set<int> test_si;
     ssuds::Set<float> test_sf;
     ssuds::Set<std::string> test_ss;
+    ssuds::Set<std::string> test_big;
 };
 
 TEST_F(SetTestFixture, Size1)
@@ -119,6 +127,21 @@ TEST_F(SetTestFixture, Rebalance1)
     test_sf.add(1.1f);
     test_sf.rebalance();
     EXPECT_EQ(test_sf.traversal(ssuds::TraversalType::PRE)[0], 1.1f);
+}
+
+TEST_F(SetTestFixture, Erase1)
+{
+    EXPECT_TRUE(test_big.erase("S"));
+}
+
+TEST_F(SetTestFixture, Erase2)
+{
+    EXPECT_TRUE(test_big.erase("G"));
+}
+
+TEST_F(SetTestFixture, Erase3)
+{
+    EXPECT_TRUE(test_big.erase("B"));
 }
 
 #endif
