@@ -125,6 +125,9 @@ protected:
                 return left_height;
         }
 
+        /// @brief Recursive function that goes through and appends data to ArrayList.
+        /// @param storage ArrayList given from original recursive function.
+        /// @param tp Desired sorting type for the traversal.
         void traversal_recursive(ArrayList<T>& storage, TraversalType tp)
         {
             if(tp == TraversalType::PRE || tp == TraversalType::SORT)
@@ -142,6 +145,21 @@ protected:
                 if(mRight != NULL)
                     mRight->traversal_recursive(storage, tp);
                 storage.append(mData);
+            }
+        }
+
+        /// @brief Recursive function for clear that sets current data to null then goes to right
+        ///         or left child.
+        void clear_recursive()
+        {
+            mData = NULL;
+            if(mLeft != NULL)
+            {
+                mLeft->clear_recursive();
+            }
+            if(mRight != NULL)
+            {
+                mRight->clear_recursive();
             }
         }
     };
@@ -215,14 +233,34 @@ public:
         return mSize;
     }
 
+    /// @brief Puts the nodes of the set into an array list of given order.
+    /// @param tp Desired order for nodes to be put in array list.
+    /// @return ArrayList.
     ArrayList<T> traversal(TraversalType tp)
     {
         ArrayList<T> A;
         mRoot->traversal_recursive(A, tp);
         if(tp == TraversalType::SORT)
             quicksort(A, 0, A.size()-1, ssuds::sort_type::ASCENDING);
-        std::cout << "type" << " : " << A[0] << std::endl;
         return A;
+    }
+
+    /// @brief Re-adds nodes into the set based on ascending sort.
+    void rebalance()
+    {
+        ArrayList<T> A;
+        A = traversal(TraversalType::SORT);
+        for(int i = 0; i < A.size()-1; i++)
+        {
+            add(A[i]);
+        }
+    }
+
+    /// @brief Calls recursive function to clear each individual node and set size to 0.
+    void clear()
+    {
+        mRoot->clear_recursive();
+        mSize = 0;
     }
 };
 }
