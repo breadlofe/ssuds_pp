@@ -37,8 +37,10 @@ protected:
         ///         "cascading" effect.
         ~node() 
         {
-            delete mRight;
-            delete mLeft;
+            if(mRight != NULL)
+                delete mRight;
+            if(mLeft != NULL)
+                delete mLeft;
         }
 
         /// @brief Recursive function for add. Adds children based on the value being greater
@@ -163,7 +165,15 @@ protected:
             }
         }
 
-        node* erase_recursive(const T& val)
+        /// @brief Recursive function for erase that goes through and erases value found.
+        ///         3 cases are to occur: either the node to be deleted has no children, in
+        ///         which case it is deleted completely; the node has one child, in which case
+        ///         that child replaces the deleted node; lastly, the node has two children,
+        ///         in which case the successor (left most child of right node) replaces node to
+        ///         be deleted.
+        /// @param val Given value to be erased.
+        /// @return node*, usually nullptr to show that node has been deleted.
+        node* erase_recursive(const T& val) // BAD NOT WORK
         {
             if(mData != val)
             {
@@ -175,7 +185,9 @@ protected:
             else
             {
                 if(mLeft == NULL && mRight == NULL) //CASE 1
+                {
                     return nullptr;
+                }
                 else if(mRight != NULL && mLeft == NULL) //CASE 2A
                 {
                     node* temp = mRight;
@@ -202,7 +214,7 @@ protected:
                         temp = temp->mLeft;
                     }
                     mData = temp->mData;
-                    //delete temp;
+                    delete temp;
                     return nullptr;
                 }
                 else
@@ -321,7 +333,7 @@ public:
         mRoot = NULL;
     }
 
-    bool erase(const T& val)
+    bool erase(const T& val) // BAD NOT WORK
     {
         if(!this->contains(val))
         {

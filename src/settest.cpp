@@ -131,17 +131,23 @@ TEST_F(SetTestFixture, Rebalance1)
 
 TEST_F(SetTestFixture, Erase1)
 {
+    EXPECT_TRUE(test_big.contains("S"));
     EXPECT_TRUE(test_big.erase("S"));
+    EXPECT_FALSE(test_big.contains("S"));
 }
 
 TEST_F(SetTestFixture, Erase2)
 {
+    EXPECT_TRUE(test_big.contains("G"));
     EXPECT_TRUE(test_big.erase("G"));
+    EXPECT_FALSE(test_big.contains("G"));
 }
 
 TEST_F(SetTestFixture, Erase3)
 {
+    EXPECT_TRUE(test_big.contains("B"));
     EXPECT_TRUE(test_big.erase("B"));
+    EXPECT_FALSE(test_big.contains("B"));
 }
 
 #endif
