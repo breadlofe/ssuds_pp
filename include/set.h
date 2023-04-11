@@ -250,9 +250,16 @@ public:
     {
         ArrayList<T> A;
         A = traversal(TraversalType::SORT);
-        for(int i = 0; i < A.size()-1; i++)
+        //std::cout << A[0] << " A[0]" << std::endl;
+        //std::cout << this->size() << " BEFORE" << std::endl;
+        this->clear();
+        //std::cout << this->size() << " AFTER" << std::endl;
+        //std::cout << A.size() << " ARRAYLIST" << std::endl;
+        for(int i = 0; i < A.size(); i++)
         {
-            add(A[i]);
+            this->add(A[i]);
+            //std::cout << A[i] << std::endl;
+            //std::cout << this->size() << std::endl;
         }
     }
 
@@ -261,6 +268,7 @@ public:
     {
         mRoot->clear_recursive();
         mSize = 0;
+        mRoot = NULL;
     }
 };
 }
