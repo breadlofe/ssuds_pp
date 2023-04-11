@@ -31,15 +31,15 @@ protected:
         /// @brief Default constructor for node. Sets mData to given data and all
         ///         tree leaves to NULL.
         /// @param data Given data of first root node.
-        node(T data) : mData(data), mLeft(NULL), mRight(NULL), mParent(NULL) {}
+        node(T data) : mData(data), mLeft(nullptr), mRight(nullptr), mParent(nullptr) {}
 
         /// @brief Default descructor for node class. Deletes right and left for
         ///         "cascading" effect.
         ~node() 
         {
-            if(mRight != NULL)
+            if(mRight != nullptr)
                 delete mRight;
-            if(mLeft != NULL)
+            if(mLeft != nullptr)
                 delete mLeft;
         }
 
@@ -51,7 +51,7 @@ protected:
         {
             if(val < mData)
             {
-                if(mLeft != NULL)
+                if(mLeft != nullptr)
                 {
                     return mLeft->add_recursive(val);
                 }
@@ -63,7 +63,7 @@ protected:
             }
             else if(val > mData)
             {
-                if(mRight != NULL)
+                if(mRight != nullptr)
                 {
                     return mRight->add_recursive(val);
                 }
@@ -89,14 +89,14 @@ protected:
                 return true;
             else if(mData < val) // Go right.
             {
-                if(mRight == NULL)
+                if(mRight == nullptr)
                     return false;
                 else
                     return mRight->contains_recursive(val);
             }
             else if(mData > val) // Go left.
             {
-                if(mLeft == NULL)
+                if(mLeft == nullptr)
                     return false;
                 else
                     return mLeft->contains_recursive(val);
@@ -104,19 +104,19 @@ protected:
         }
 
         /// @brief Recursive function for height. Creates two local variables, left and right
-        ///         height, and continues to increase them through recursion until both hit NULL
+        ///         height, and continues to increase them through recursion until both hit nullptr
         ///         pointers. After, compares largest of integers and returns that.
         /// @return Returns unsigned int of largest of the local variables.
         unsigned int get_height_recursive()
         {
             unsigned int right_height = 0;
             unsigned int left_height = 0;
-            if(mRight != NULL)
+            if(mRight != nullptr)
             {
                 right_height++;
                 right_height += mRight->get_height_recursive();
             }
-            if(mLeft != NULL)
+            if(mLeft != nullptr)
             {
                 left_height++;
                 left_height += mLeft->get_height_recursive();
@@ -135,31 +135,31 @@ protected:
             if(tp == TraversalType::PRE || tp == TraversalType::SORT)
             {
                 storage.append(mData);
-                if(mLeft != NULL)
+                if(mLeft != nullptr)
                     mLeft->traversal_recursive(storage, tp);
-                if(mRight != NULL) // Question 1
+                if(mRight != nullptr) // Question 1
                     mRight->traversal_recursive(storage, tp);
             }
             else if(tp == TraversalType::POST)
             {
-                if(mLeft != NULL)
+                if(mLeft != nullptr)
                     mLeft->traversal_recursive(storage, tp);
-                if(mRight != NULL)
+                if(mRight != nullptr)
                     mRight->traversal_recursive(storage, tp);
                 storage.append(mData);
             }
         }
 
-        /// @brief Recursive function for clear that sets current data to null then goes to right
+        /// @brief Recursive function for clear that sets current data to nullptr then goes to right
         ///         or left child.
         void clear_recursive()
         {
             mData = NULL;
-            if(mLeft != NULL)
+            if(mLeft != nullptr)
             {
                 mLeft->clear_recursive();
             }
-            if(mRight != NULL)
+            if(mRight != nullptr)
             {
                 mRight->clear_recursive();
             }
@@ -177,39 +177,39 @@ protected:
         {
             if(mData != val)
             {
-                if(mLeft != NULL)
-                    mLeft->erase_recursive(val);
-                if(mRight != NULL)
-                    mRight->erase_recursive(val);
+                if(mLeft != nullptr)
+                    mLeft = mLeft->erase_recursive(val);
+                if(mRight != nullptr)
+                    mRight = mRight->erase_recursive(val);
             }
             else
             {
-                if(mLeft == NULL && mRight == NULL) //CASE 1
+                if(mLeft == nullptr && mRight == nullptr) //CASE 1
                 {
                     return nullptr;
                 }
-                else if(mRight != NULL && mLeft == NULL) //CASE 2A
+                else if(mRight != nullptr && mLeft == nullptr) //CASE 2A
                 {
                     node* temp = mRight;
                     mData = temp->mData;
                     mLeft = temp->mLeft;
                     mRight = temp->mRight;
-                    //delete temp;
+                    delete temp;
                     return nullptr;
                 }
-                else if(mRight == NULL && mLeft != NULL) //CASE 2B
+                else if(mRight == nullptr && mLeft != nullptr) //CASE 2B
                 {
                     node* temp = mLeft;
                     mData = temp->mData;
                     mLeft = temp->mLeft;
                     mRight = temp->mRight;
-                    //delete temp;
+                    delete temp;
                     return nullptr;
                 }
-                else if(mLeft != NULL && mRight != NULL) //CASE 3
+                else if(mLeft != nullptr && mRight != nullptr) //CASE 3
                 {
                     node* temp = mRight;
-                    while(temp->mLeft != NULL)
+                    while(temp->mLeft != nullptr)
                     {
                         temp = temp->mLeft;
                     }
@@ -232,7 +232,7 @@ protected:
     /// @brief Int representing the amount of nodes in the tree, NOT the height.
     int mSize;
 public:
-    /// @brief Default constructor for Set class. Sets mRoot to NULL and mSize to 0.
+    /// @brief Default constructor for Set class. Sets mRoot to nullptr and mSize to 0.
     Set() : mSize(0), mRoot(nullptr) {}
 
     /// @brief Destructor for the whole set. Destroys from buttom up.
@@ -246,7 +246,7 @@ public:
     /// @return Returns bool: true if insert was successful,false if not.
     bool add(const T& val)
     {
-        if(mRoot == NULL)
+        if(mRoot == nullptr)
         {
             mRoot = new node(val);
             mSize++;
@@ -264,12 +264,12 @@ public:
         }
     }
 
-    /// @brief Function that first checks if root is NULL. If not, calls contains_recursive().
+    /// @brief Function that first checks if root is nullptr. If not, calls contains_recursive().
     /// @param val Desired value that is being searched for by the user.
     /// @return Bool: true if value is in tree, false if not.
     bool contains(const T& val) 
     {
-        if(mRoot == NULL)
+        if(mRoot == nullptr)
             return false;
         else
             return mRoot->contains_recursive(val);
@@ -279,7 +279,7 @@ public:
     /// @return Returns unsigned int representing height of tree.
     unsigned int get_height()
     {
-        if(mRoot != NULL)
+        if(mRoot != nullptr)
         {
             unsigned int total_height = 1;
             return total_height + mRoot->get_height_recursive();
@@ -330,7 +330,7 @@ public:
     {
         mRoot->clear_recursive();
         mSize = 0;
-        mRoot = NULL;
+        mRoot = nullptr;
     }
 
     bool erase(const T& val) // BAD NOT WORK
@@ -342,7 +342,7 @@ public:
         else
         {
             mSize--;
-            if(mRoot->erase_recursive(val) == NULL)
+            if(mRoot->erase_recursive(val) == nullptr)
                 return true;
             return false;
         }
