@@ -93,4 +93,32 @@ TEST_F(SetTestFixture, Traversal3)
     EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::SORT)[3], "John");
 }
 
+TEST_F(SetTestFixture, Clear1)
+{
+    test_sf.add(1.1f);
+    test_sf.add(8.9f);
+    EXPECT_EQ(test_sf.size(), 2);
+    test_sf.clear();
+    EXPECT_EQ(test_sf.size(), 0);
+}
+
+TEST_F(SetTestFixture, Clear2)
+{
+    test_sf.add(1.1f);
+    test_sf.add(8.9f);
+    EXPECT_EQ(test_sf.size(), 2);
+    test_sf.clear();
+    EXPECT_FALSE(test_sf.contains(1.1f));
+}
+
+TEST_F(SetTestFixture, Rebalance1)
+{
+    test_sf.add(8.0f);
+    test_sf.add(7.6f);
+    test_sf.add(9.1f);
+    test_sf.add(1.1f);
+    test_sf.rebalance();
+    EXPECT_EQ(test_sf.traversal(ssuds::TraversalType::PRE)[0], 1.1f);
+}
+
 #endif
