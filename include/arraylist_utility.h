@@ -182,7 +182,7 @@ namespace ssuds{
     template <class T>
     long int partition(ArrayList<T>& alist, int left, int right, sort_type stype, long int* op = nullptr)
     {
-        int pivot = alist[right];
+        T pivot = alist[right];
         int i = (left - 1);
         long int counter = 0;
 

@@ -81,7 +81,7 @@ protected:
         ///         It does the same for the left children as well.
         /// @param val Desired value that is being searched for in the tree.
         /// @return Returns bool representing results of if tree contains value.
-        bool contains_recursive(T val)
+        bool contains_recursive(const T& val)
         {
             if(mData == val) // Node we are on matches value.
                 return true;
@@ -127,7 +127,7 @@ protected:
 
         void traversal_recursive(ArrayList<T>& storage, TraversalType tp)
         {
-            if(tp == TraversalType::POST)
+            if(tp == TraversalType::PRE || tp == TraversalType::SORT)
             {
                 storage.append(mData);
                 if(mLeft != NULL)
@@ -135,7 +135,7 @@ protected:
                 if(mRight != NULL) // Question 1
                     mRight->traversal_recursive(storage, tp);
             }
-            else if(tp == TraversalType::PRE)
+            else if(tp == TraversalType::POST)
             {
                 if(mLeft != NULL)
                     mLeft->traversal_recursive(storage, tp);
@@ -187,7 +187,7 @@ public:
     /// @brief Function that first checks if root is NULL. If not, calls contains_recursive().
     /// @param val Desired value that is being searched for by the user.
     /// @return Bool: true if value is in tree, false if not.
-    bool contains(T val) 
+    bool contains(const T& val) 
     {
         if(mRoot == NULL)
             return false;
@@ -219,8 +219,9 @@ public:
     {
         ArrayList<T> A;
         mRoot->traversal_recursive(A, tp);
-        // if(tp == TraversalType::SORT)
-        //     quicksort(A, 0, A.size()-1, ssuds::sort_type::ASCENDING);
+        if(tp == TraversalType::SORT)
+            quicksort(A, 0, A.size()-1, ssuds::sort_type::ASCENDING);
+        std::cout << "type" << " : " << A[0] << std::endl;
         return A;
     }
 };

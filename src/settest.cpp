@@ -61,7 +61,36 @@ TEST_F(SetTestFixture, Traversal1)
     ssuds::ArrayList<std::string> A;
     A.append("Bob");
     A.append("John");
-    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::POST)[0], A[0]);
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::PRE)[0], A[0]);
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::PRE)[1], A[1]);
+}
+
+TEST_F(SetTestFixture, Traversal2)
+{
+    test_ss.add("Bob");
+    test_ss.add("John");
+    ssuds::ArrayList<std::string> A;
+    A.append("Bob");
+    A.append("John");
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::POST)[0], A[1]);
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::POST)[1], A[0]);
+}
+
+TEST_F(SetTestFixture, Traversal3)
+{
+    test_ss.add("Bob");
+    test_ss.add("John");
+    test_ss.add("Adam");
+    test_ss.add("Carl");
+    ssuds::ArrayList<std::string> A;
+    A.append("Bob");
+    A.append("John");
+    A.append("Adam");
+    A.append("Carl");
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::SORT)[0], A[2]);
+    ssuds::quicksort(A,0,A.size()-1,ssuds::sort_type::ASCENDING);
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::SORT)[0], A[0]);
+    EXPECT_EQ(test_ss.traversal(ssuds::TraversalType::SORT)[3], "John");
 }
 
 #endif
