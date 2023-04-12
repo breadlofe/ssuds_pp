@@ -150,4 +150,12 @@ TEST_F(SetTestFixture, Erase3)
     EXPECT_FALSE(test_big.contains("B"));
 }
 
+TEST_F(SetTestFixture, Erase4)
+{
+    EXPECT_TRUE(test_big.contains("S"));
+    EXPECT_TRUE(test_big.erase("S"));
+    EXPECT_FALSE(test_big.contains("S"));
+    EXPECT_TRUE(test_big.contains("G"));
+}
+
 #endif

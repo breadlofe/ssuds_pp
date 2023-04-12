@@ -181,6 +181,7 @@ protected:
                     mLeft = mLeft->erase_recursive(val);
                 if(mRight != nullptr)
                     mRight = mRight->erase_recursive(val);
+                return this;
             }
             else
             {
@@ -333,7 +334,10 @@ public:
         mRoot = nullptr;
     }
 
-    bool erase(const T& val) // BAD NOT WORK
+    /// @brief Erase takes out one of the given values out of the set with recursion.
+    /// @param val Given value to be removed.
+    /// @return Bool saying if erasure was successful or not.
+    bool erase(const T& val)
     {
         if(!this->contains(val))
         {
@@ -342,9 +346,11 @@ public:
         else
         {
             mSize--;
-            if(mRoot->erase_recursive(val) == nullptr)
-                return true;
-            return false;
+            // if(mRoot->erase_recursive(val) == nullptr)
+            //     return true;
+            mRoot->erase_recursive(val);
+            return true;
+           // return false;
         }
     }
 };
