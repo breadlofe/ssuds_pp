@@ -15,7 +15,7 @@ protected:
     /// @brief Class containing the information of each individual node in the Set.
     class node
     {
-    protected:
+    public:
         /// @brief Data of type T stored in node class.
         T mData;
 
@@ -24,7 +24,7 @@ protected:
 
         /// @brief Pointer to parent of current node.
         node * mParent;
-    public:
+
         /// @brief Default constructor so C++ doesn't kill me. Unused.
         node() {}
 
@@ -165,6 +165,25 @@ protected:
             }
         }
 
+        // /// @brief Recursive function that keeps finding the new middle and replacing the values.
+        // /// @param A ArrayList that is sorted.
+        // /// @param left integer of starting 0, left of list.
+        // /// @param right integer of starting list size, right of list.
+        // /// @return Node*
+        // node* rebalance_recursive(const ArrayList<T>& A, int left, int right) //HERE
+        // {
+        //     int mid = (int)((right - left)/2 + left);
+        //     node* temp = new node(A[mid]);
+        //     //Find the index half way between keft and rifhr make a node rjat holds rhat value
+        //     if(left >= right)
+        //         return nullptr;
+        //     //then do this
+        //     temp->mLeft = rebalance_recursive(A, left, mid-1);
+        //     temp->mRight = rebalance_recursive(A, mid+1, right);
+
+        //     return temp;
+        // }
+
         /// @brief Recursive function for erase that goes through and erases value found.
         ///         3 cases are to occur: either the node to be deleted has no children, in
         ///         which case it is deleted completely; the node has one child, in which case
@@ -187,6 +206,7 @@ protected:
             {
                 if(mLeft == nullptr && mRight == nullptr) //CASE 1
                 {
+                    delete this;
                     return nullptr;
                 }
                 else if(mRight != nullptr && mLeft == nullptr) //CASE 2A
@@ -308,22 +328,43 @@ public:
         return A;
     }
 
+        /// @brief Recursive function that keeps finding the new middle and replacing the values.
+        /// @param A ArrayList that is sorted.
+        /// @param left integer of starting 0, left of list.
+        /// @param right integer of starting list size, right of list.
+        /// @return Node*
+        node* rebalance_recursive(ArrayList<T>& A, int left, int right) //HERE
+        {
+            int mid = (int)((right - left)/2 + left);
+            node* temp = new node(A[mid]);
+            //Find the index half way between keft and rifhr make a node rjat holds rhat value
+            if(left >= right)
+                return nullptr;
+            //then do this
+            temp->mLeft = rebalance_recursive(A, left, mid-1);
+            temp->mRight = rebalance_recursive(A, mid+1, right);
+
+            return temp;
+        }
+
     /// @brief Re-adds nodes into the set based on ascending sort.
-    void rebalance()
+    void rebalance() //HERE
     {
         ArrayList<T> A;
         A = traversal(TraversalType::SORT);
         //std::cout << A[0] << " A[0]" << std::endl;
         //std::cout << this->size() << " BEFORE" << std::endl;
-        this->clear();
+        clear();
         //std::cout << this->size() << " AFTER" << std::endl;
         //std::cout << A.size() << " ARRAYLIST" << std::endl;
-        for(int i = 0; i < A.size(); i++)
-        {
-            this->add(A[i]);
-            //std::cout << A[i] << std::endl;
-            //std::cout << this->size() << std::endl;
-        }
+        // for(int i = 0; i < A.size(); i++)
+        // {
+        //     this->add(A[i]);
+        //     //std::cout << A[i] << std::endl;
+        //     //std::cout << this->size() << std::endl;
+        // }
+        mRoot = rebalance_recursive(A, 0, A.size()-1);
+        mSize = A.size();
     }
 
     /// @brief Calls recursive function to clear each individual node and set size to 0.
