@@ -267,12 +267,24 @@ public:
         void operator++()
         {
             mStack.pop();
+            mIndex++;
         }
 
         
-        bool operator!=(const OrderedSetIterator& other)
+        bool operator!=(OrderedSetIterator& other)
         {
-            // stuff
+            if(mIndex == -1 && other.mIndex == -1)
+                return false;
+            else if(mIndex != -1 && other.mIndex == -1)
+                return true;
+            else
+            {
+                if(mStack.size() != other.mStack.size())
+                    return true;
+                if(mStack.top()->mData != other.mStack.top()->mData)
+                    return true;
+                return false;
+            }
         }
     };
 protected:
@@ -423,6 +435,17 @@ public:
            // return false;
         }
     }
+
+    /// @brief OStream that basically piggy-backs off of ArrayList ostream.
+    /// @param os os address.
+    /// @param S the Set itself.
+    /// @return a message for you!
+    friend std::ostream& operator<<(std::ostream& os, Set<T>& S)
+    {
+        ArrayList<T> A;
+        A = S.traversal(TraversalType::SORT);
+        return os << A;
+    }   
 
     OrderedSetIterator begin()
     {

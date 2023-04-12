@@ -172,4 +172,21 @@ TEST_F(SetTestFixture, Iterator2)
     EXPECT_EQ(*iter, "G");
 }
 
+TEST_F(SetTestFixture, Iterator3)
+{
+    ssuds::Set<std::string>::OrderedSetIterator iter = test_big.begin();
+    ssuds::Set<std::string>::OrderedSetIterator iter2 = test_big.begin();
+    EXPECT_FALSE(iter != iter2);
+    ++iter;
+    EXPECT_TRUE(iter != iter2);
+}
+
+TEST_F(SetTestFixture, OStream1)
+{
+    testing::internal::CaptureStdout();
+    std::cout << test_big;
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "[A, B, C, D, G, M, S]");
+}
+
 #endif
