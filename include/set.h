@@ -1,6 +1,7 @@
 #pragma once
 #include "arraylist.h"
 #include "arraylist_utility.h"
+#include "stack.h"
 
 namespace ssuds{
 
@@ -165,25 +166,6 @@ protected:
             }
         }
 
-        // /// @brief Recursive function that keeps finding the new middle and replacing the values.
-        // /// @param A ArrayList that is sorted.
-        // /// @param left integer of starting 0, left of list.
-        // /// @param right integer of starting list size, right of list.
-        // /// @return Node*
-        // node* rebalance_recursive(const ArrayList<T>& A, int left, int right) //HERE
-        // {
-        //     int mid = (int)((right - left)/2 + left);
-        //     node* temp = new node(A[mid]);
-        //     //Find the index half way between keft and rifhr make a node rjat holds rhat value
-        //     if(left >= right)
-        //         return nullptr;
-        //     //then do this
-        //     temp->mLeft = rebalance_recursive(A, left, mid-1);
-        //     temp->mRight = rebalance_recursive(A, mid+1, right);
-
-        //     return temp;
-        // }
-
         /// @brief Recursive function for erase that goes through and erases value found.
         ///         3 cases are to occur: either the node to be deleted has no children, in
         ///         which case it is deleted completely; the node has one child, in which case
@@ -247,6 +229,53 @@ protected:
         }
     };
 
+public:
+    class OrderedSetIterator
+    {
+    protected:
+        ///Int that holds position of iterator.
+        int mIndex;
+
+        ///Pointer to stack of node pointers.
+        Stack<node*> mStack;
+
+    public:
+        OrderedSetIterator(int index, node* root)
+        {
+            mIndex = index;
+            node* temp = root;
+            while(temp != nullptr || mStack.size() == false)
+            {
+                while(temp != nullptr)
+                {
+                    mStack.push(temp);
+                    temp = temp->mLeft;
+                }
+            }
+            temp = mStack.top();
+            mStack.pop();
+            temp = temp->mRight;
+        }
+
+        
+        T& operator*()
+        {
+            return mStack.top()->mData;
+        }
+
+        
+        void operator++()
+        {
+            mStack.pop();
+        }
+
+        
+        bool operator!=(const OrderedSetIterator& other)
+        {
+            // stuff
+        }
+    };
+protected:
     /// @brief Pointer to the whole node which contains information of node class.
     node * mRoot;
 
@@ -394,5 +423,19 @@ public:
            // return false;
         }
     }
+
+    OrderedSetIterator begin()
+    {
+		if (mSize == 0)
+			return OrderedSetIterator(-1, nullptr);
+		else
+			return OrderedSetIterator(0, mRoot);
+    }
+
+    OrderedSetIterator end()
+    {
+        return OrderedSetIterator(-1, nullptr);
+    }
+
 };
 }

@@ -158,4 +158,18 @@ TEST_F(SetTestFixture, Erase4)
     EXPECT_TRUE(test_big.contains("G"));
 }
 
+TEST_F(SetTestFixture, Iterator1)
+{
+    ssuds::Set<std::string>::OrderedSetIterator iter = test_big.begin();
+    EXPECT_EQ(*iter, "B");
+}
+
+TEST_F(SetTestFixture, Iterator2)
+{
+    ssuds::Set<std::string>::OrderedSetIterator iter = test_big.begin();
+    EXPECT_EQ(*iter, "B");
+    ++iter;
+    EXPECT_EQ(*iter, "G");
+}
+
 #endif
