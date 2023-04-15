@@ -54,21 +54,21 @@ namespace ssuds
         /// @param index Unsigned int pointer that tracks the position of values in the table.
         /// @param the_key Given key that we are searching for.
         /// @return Bool: False if key found, true if not.
-        bool search_helper(unsigned int* index, K the_key)
+        bool in_table(unsigned int* index, K the_key)
         {
-            if(mTable[index]->mKey != the_key)
+            if(mTable[*index]->mKey != the_key)
             {
-                if(mTable[index]->mKey != NULL)
+                if(*index < mSize)
                 {
                     (*index)++;
                     // question: will I have to check for wrap around cases?
-                    return search_helper(index, the_key);
+                    return in_table(index, the_key);
                 }
                 else
-                    return true;
+                    return false;
             }
             else
-                return false;
+                return true;
         }
 
         /// @brief Helper function for bracket operator that increases capicity if 
@@ -88,7 +88,7 @@ namespace ssuds
             {
                 temp[i]->mValue = mTable[i]->mValue;
                 //V& temp_val = this[temp[i]->mKey];
-                temp[i]->mValue = this[temp[i]->mKey];
+                temp[i]->mValue = (*this)[temp[i]->mKey];
             }
             return temp;
         }
@@ -119,7 +119,7 @@ namespace ssuds
             //find the index up here.
             std::hash<K> key_hash;
             unsigned int index = key_hash(the_key) % mCapacity;
-            if(search_helper(&index, the_key))
+            if(!in_table(&index, the_key))
             {
                 if(mSize >= (int)(mCapacity*0.7f))
                 {
