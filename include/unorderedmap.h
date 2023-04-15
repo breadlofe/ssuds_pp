@@ -133,5 +133,19 @@ namespace ssuds
                 return mTable[index]->mValue;
             }
         }
+
+        /// @brief Simple function that gives capacity of map.
+        /// @return unsigned int of capacity.
+        unsigned int capacity()
+        {
+            return mCapacity;
+        }
+
+        /// @brief Simple function that gives amount of slots filled in map.
+        /// @return int of mSize.
+        int size()
+        {
+            return mSize;
+        }
     };
 }
