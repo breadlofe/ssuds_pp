@@ -54,7 +54,7 @@ namespace ssuds
         /// @param index Unsigned int pointer that tracks the position of values in the table.
         /// @param the_key Given key that we are searching for.
         /// @return Bool: False if key found, true if not.
-        bool search_helper(unsigned int* index, K& the_key)
+        bool search_helper(unsigned int* index, K the_key)
         {
             if(mTable[index]->mKey != the_key)
             {
@@ -87,7 +87,7 @@ namespace ssuds
             for(int i=0; i<mSize; i++)
             {
                 temp[i]->mValue = mTable[i]->mValue;
-                V& temp_val = this[temp[i]->mKey];
+                //V& temp_val = this[temp[i]->mKey];
                 temp[i]->mValue = this[temp[i]->mKey];
             }
             return temp;
