@@ -7,6 +7,7 @@ namespace ssuds
     protected:
         class node
         {
+        public:
             /// @brief Key of the Table of given type. Example would be "Bob" type string.
             K mKey;
 
@@ -53,11 +54,11 @@ namespace ssuds
         /// @param index Unsigned int pointer that tracks the position of values in the table.
         /// @param the_key Given key that we are searching for.
         /// @return Bool: False if key found, true if not.
-        bool search_helper(unsigned int* index, const K& the_key)
+        bool search_helper(unsigned int* index, K& the_key)
         {
-            if(mTable[index] != the_key)
+            if(mTable[index]->mKey != the_key)
             {
-                if(mTable[index] != NULL)
+                if(mTable[index]->mKey != NULL)
                 {
                     (*index)++;
                     // question: will I have to check for wrap around cases?
@@ -86,7 +87,8 @@ namespace ssuds
             for(int i=0; i<mSize; i++)
             {
                 temp[i]->mValue = mTable[i]->mValue;
-                temp[i]->mValue = this->operator[temp[i]->mKey]
+                V& temp_val = this[temp[i]->mKey];
+                temp[i]->mValue = this[temp[i]->mKey];
             }
             return temp;
         }
@@ -111,13 +113,13 @@ namespace ssuds
         ///         and return its hash value, or returns hash value of key if it already exists
         /// @param the_key Given key that will either be inserted or searched for.
         /// @return Returns reference to hash value.
-        V& operator[](const K& the_key)
+        V& operator[](K the_key)
         {
             //probably put grow here
             //find the index up here.
             std::hash<K> key_hash;
             unsigned int index = key_hash(the_key) % mCapacity;
-            if(search_helper(index, the_key))
+            if(search_helper(&index, the_key))
             {
                 if(mSize >= (int)(mCapacity*0.7f))
                 {

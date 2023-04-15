@@ -2,7 +2,7 @@
 #include "set.h"
 #include "arraylist.h"
 
-#define SET_TEST 1
+#define SET_TEST 0
 
 #if SET_TEST
 
