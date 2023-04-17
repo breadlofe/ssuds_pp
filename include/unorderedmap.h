@@ -187,5 +187,19 @@ namespace ssuds
         {
             return mSize;
         }
+
+        /// @brief Finds if given key is in table. Unlike bracket operator, does not
+        ///        Add given key to table if the key is not in the table.
+        /// @param the_key Key of templated type K.
+        /// @return Bool: false if table does not contain key, true if it does.
+        bool contains(K the_key)
+        {
+            std::hash<K> key_hash;
+            unsigned int index = key_hash(the_key) % mCapacity;
+            if(in_table(&index, the_key))
+                return true;
+            else
+                return false;
+        }
     };
 }

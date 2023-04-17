@@ -82,4 +82,10 @@ TEST_F(MapTestFixture, OStream2)
     EXPECT_EQ(output, "{0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7}");
 }
 
+TEST_F(MapTestFixture, Contains1)
+{
+    EXPECT_TRUE(test_map.contains("Alice"));
+    EXPECT_FALSE(test_map.contains("Carl"));
+}
+
 #endif
