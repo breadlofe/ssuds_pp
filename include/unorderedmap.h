@@ -99,6 +99,107 @@ namespace ssuds
         }
 
     public:
+        /// @brief Iterator for the Unordered Map.
+        class UnorderedMapIterator
+        {
+        protected:
+            /// @brief Index that the iterator is currently at.
+            int mIndex;
+
+            /// @brief Pointer to map to be used for iterator.
+            UnorderedMap* mMap;
+
+        public:
+            /// @brief Default constructor so C++ doesn't yell at me.
+            UnorderedMapIterator()
+            {
+                // Default.
+            }
+
+            /// @brief Actual used constructor for iterator. Sets mIndex to first filled slot.
+            /// @param index Integer representing where the iterator begins.
+            UnorderedMapIterator(int index, UnorderedMap* map)
+            {
+                mIndex = index;
+                mMap = map;
+                if(mMap->size() != 0)
+                    while(mMap->mTable[mIndex] == nullptr)
+                    {
+                        mIndex++;
+                    }
+            }
+
+            /// @brief Overload of pointer operation.
+            /// @return Gives the key of the node that the 
+            ///         iterator index is currently pointing to.
+            K& operator*()
+            {
+                return mMap->mTable[mIndex]->mKey;
+            }
+
+            /// @brief Overload of the increment operator.
+            void operator++()
+            {
+                mIndex++;
+                while(mMap->mTable[mIndex] == nullptr)
+                {
+                    mIndex++;
+                    if(mIndex >= mMap->capacity() - 1)
+                    {
+                        mIndex = -1;
+                        mMap = nullptr;
+                    }
+                }
+            }
+
+            /// @brief Comparison operator overload for iterator.
+            /// @param other The other iterator being compared.
+            /// @return True if they are same, false if not.
+            bool operator==(UnorderedMapIterator& other)
+            {
+                if(mIndex == -1 && other.mIndex == -1)
+                    return true;
+                else if(mIndex != -1 && other.mIndex == -1)
+                    return false;
+                else
+                {
+                    if(mIndex == other.mIndex)
+                    {
+                        if(mMap->mTable[mIndex] == other.mMap->mTable[mIndex])
+                            return true;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+            }
+
+            /// @brief Not equal operator overload for iterator.
+            /// @param other The other iterator being compared.
+            /// @return True if not equal, false if it is.
+            bool operator!=(UnorderedMapIterator& other)
+            {
+                if(mIndex == -1 && other.mIndex == -1)
+                    return false;
+                else if(mIndex != -1 && other.mIndex == -1)
+                    return true;
+                else
+                {
+                    if(mIndex == other.mIndex)
+                    {
+                        if(mMap->mTable[mIndex] == other.mMap->mTable[mIndex])
+                            return false;
+                        else
+                            return true;
+                    }
+                    else
+                        return true;
+                }
+            }
+
+        };
+
         /// @brief Default constructor for UnorederMap that sets mTable to capacity of 
         ///         mMin_Capacity and mSize to zero.
         UnorderedMap()
@@ -229,5 +330,21 @@ namespace ssuds
                 }
             }
         }
+
+        ///Returns iterator, if data is there, to beggining of UnorderedMap.
+        UnorderedMapIterator begin()
+        {
+            if (mSize == 0)
+                return UnorderedMapIterator(-1, nullptr);
+            else
+                return UnorderedMapIterator(0, this);
+        }
+
+        ///Return iterator of one after end of UnorderedMap.
+        UnorderedMapIterator end()
+        {
+            return UnorderedMapIterator(-1, nullptr);
+        }
+
     };
 }

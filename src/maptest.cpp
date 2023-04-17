@@ -104,4 +104,49 @@ TEST_F(MapTestFixture, Remove2)
     EXPECT_EQ(output, "{0:0, 1:1, 3:3, 4:4, 5:5, 6:6, 7:7}");
 }
 
+TEST_F(MapTestFixture, Itr1)
+{
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr;
+    test_local_itr = test_map.begin();
+}
+
+TEST_F(MapTestFixture, Itr2)
+{
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr;
+    test_local_itr = test_map.begin();
+    EXPECT_EQ((*test_local_itr), "Alice");
+}
+
+TEST_F(MapTestFixture, Itr3)
+{
+    test_map["Jill"] = 5;
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr;
+    test_local_itr = test_map.begin();
+    ++test_local_itr;
+    EXPECT_EQ((*test_local_itr), "Jill");
+}
+
+TEST_F(MapTestFixture, Itr4)
+{
+    test_map["Jill"] = 5;
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr;
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr_copy;
+    test_local_itr = test_map.begin();
+    test_local_itr_copy = test_map.begin();
+    EXPECT_TRUE(test_local_itr == test_local_itr_copy);
+    EXPECT_FALSE(test_local_itr != test_local_itr_copy);
+}
+
+TEST_F(MapTestFixture, Itr5)
+{
+    test_map["Jill"] = 5;
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr;
+    ssuds::UnorderedMap<std::string, int>::UnorderedMapIterator test_local_itr_copy;
+    test_local_itr = test_map.begin();
+    test_local_itr_copy = test_map.begin();
+    ++test_local_itr;
+    EXPECT_FALSE(test_local_itr == test_local_itr_copy);
+    EXPECT_TRUE(test_local_itr != test_local_itr_copy);
+}
+
 #endif
