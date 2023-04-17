@@ -3,7 +3,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "cd Build && cmake -B./ -S../src && make",
+            "command": "cd Build && cmake -DCMAKE_BUILD_TYPE=Debug -B./ -S../src && make",
         }
     ],
     "version": "2.0.0"
