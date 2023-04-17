@@ -201,5 +201,33 @@ namespace ssuds
             else
                 return false;
         }
+
+        /// @brief Removes given key from the hash map. Will recreate the table 
+        ///        to replace possible nodes that were originally deplaced due to clustering.
+        /// @param the_key Desired key to be removed. Type K.
+        void remove(K the_key)
+        {
+            std::hash<K> key_hash;
+            unsigned int sindex = key_hash(the_key) % mCapacity;
+            if(in_table(&sindex, the_key))
+            {
+                mTable[sindex] = nullptr;
+                node** temp = mTable;
+                mTable = new node*[mCapacity];
+                mSize = 0;
+                for(int i = 0; i < mCapacity; i++)
+                {
+                    if(mTable[i] != nullptr)
+                        mTable[i] = nullptr;
+                }
+                for(int i = 0; i < mCapacity; i++)
+                {
+                    if(temp[i] != NULL)
+                    {
+                        (*this)[temp[i]->mKey] = temp[i]->mValue;
+                    }
+                }
+            }
+        }
     };
 }
