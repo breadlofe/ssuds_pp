@@ -148,6 +148,27 @@ namespace ssuds
             }
         }
 
+        friend std::ostream& operator<<(std::ostream& os, const UnorderedMap& m)
+        {
+            unsigned int val_written = 0;
+            os << "{";
+            for(int i = 0; i < m.mCapacity; i++)
+            {
+                if(m.mTable[i] != nullptr)
+                {
+                    os << m.mTable[i]->mKey << ":" << m.mTable[i]->mValue;
+                    val_written++;
+                    if(val_written == m.mSize)
+                    {
+                        os << "}";
+                        return os;
+                    }
+                    else
+                        os << ", ";
+                }
+            }
+        }
+
         /// @brief Simple function that gives capacity of map.
         /// @return unsigned int of capacity.
         unsigned int capacity()

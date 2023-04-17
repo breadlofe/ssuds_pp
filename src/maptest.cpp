@@ -66,4 +66,20 @@ TEST_F(MapTestFixture, Capacity3)
     EXPECT_EQ(test_big_map[0], 0);
 }
 
+TEST_F(MapTestFixture, OStream1)
+{
+    testing::internal::CaptureStdout();
+    std::cout << test_map;
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "{Alice:1}");
+}
+
+TEST_F(MapTestFixture, OStream2)
+{
+    testing::internal::CaptureStdout();
+    std::cout << test_big_map;
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "{0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7}");
+}
+
 #endif
