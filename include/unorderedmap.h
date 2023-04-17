@@ -148,6 +148,11 @@ namespace ssuds
             }
         }
 
+        /// @brief Outputs string in style of "{Example:0, Test:1}". Does not output 
+        ///        nullptr nodes; only the nodes with keys get printed.
+        /// @param os Ostream that the string is being outputted to.
+        /// @param m Constant address of UnorderedMap.
+        /// @return Outputs ostream to console.
         friend std::ostream& operator<<(std::ostream& os, const UnorderedMap& m)
         {
             unsigned int val_written = 0;
