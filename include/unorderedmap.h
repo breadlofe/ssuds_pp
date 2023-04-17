@@ -115,6 +115,11 @@ namespace ssuds
         /// @brief Default destructor for UnorderedMap which deletes mTable as an array.
         ~UnorderedMap()
         {
+            for(int i = 0; i < mCapacity; i++)
+            {
+                if(mTable[i] != nullptr)
+                    mTable[i] = nullptr;
+            }
             delete[] mTable;
         }
 
