@@ -1,10 +1,16 @@
 #include <functional>
 namespace ssuds
 {
+    /// @brief Unodered Map class that takes the hash values of given keys (type K)
+    ///        and places them in value in map that is obtained through hashing and
+    ///        modding by the capacity of the whole table.
+    /// @tparam K The given key to be placed within the map.
+    /// @tparam V The arbitrary value assigned along with the key.
     template <class K, class V>
     class UnorderedMap
     {
     protected:
+        /// @brief Class that contains the information for the nodes that are in the map.
         class node
         {
         public:
