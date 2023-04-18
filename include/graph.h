@@ -30,6 +30,9 @@ namespace ssuds
         {
             //stuff
         }
-        
+        friend std::ostream& operator<<(std::ostream& os, const Graph& g)
+        {
+            //stuff
+        }
     };
 }
