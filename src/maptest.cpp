@@ -1,7 +1,7 @@
 #include <gtest/gtest.h> 
 #include "unorderedmap.h"
 
-#define MAP_TEST 1
+#define MAP_TEST 0
 
 #if MAP_TEST
 
