@@ -36,18 +36,45 @@ namespace ssuds
             ///      1.2
         }
 
+        /// @brief Deletes whole node, including the connections between other nodes.
+        /// @param node_val Desired node to be deleted.
         void remove_node(const N& node_val)
         {
-            //stuff
+            // Case 1: removal of node and connections to all the nodes it goes to.
+            auto it = the_graph->find(node_val);
+            if(it != the_graph->end())
+                it = the_graph->erase(it);
+
+            // Case 2: removal of connection between other nodes to removed node.
+            it = the_graph->begin();
+            while(it != the_graph->end())
+            {
+                auto inner_it = it->second.find(node_val);
+                if(inner_it != it->second.end())
+                    inner_it = it->second.erase(inner_it);
+                ++it;
+            }
         }
+
+        /// @brief Removes connection between two nodes.
+        /// @param start_node Node that is connecting to (-->) the end_node.
+        /// @param end_node Edge node that is taking in the connection.
         void remove_edge(const N& start_node, const N& end_node)
         {
-            //stuff
+            auto it = the_graph->find(start_node);
+            if(it != the_graph->end())
+            {
+                auto inner_it = it->second.find(end_node);
+                if(inner_it != it->second.end())
+                    inner_it = it->second.erase(inner_it);
+            }
         }
+
         bool has_edge(const N& start_node, const N& end_node)
         {
             //stuff
         }
+
         friend std::ostream& operator<<(std::ostream& os, const Graph& g)
         {
             //stuff
