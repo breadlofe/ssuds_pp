@@ -101,6 +101,10 @@ namespace ssuds
                 return false;
         }
 
+        /// @brief OStream overload that prints out formatted graph.
+        /// @param os OStream
+        /// @param g Reference to the graph being printed.
+        /// @return Console message.
         friend std::ostream& operator<<(std::ostream& os, const Graph& g)
         {
             auto it = g.the_graph.begin();
